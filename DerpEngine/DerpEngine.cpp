@@ -4,42 +4,44 @@
 #include <string>
 #include <iostream>
 #include <stdio.h>
-#include <dos.h>
 #include <assert.h>
 #include <ctype.h>
 #include <stdlib.h>
-//#include <WinBase.h>
-//#include <Windows.h>
+
+#include <Windows.h>
+#include <WinBase.h>
+#include <direct.h>
+
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 
 #include "DerpEngine.h"
 
-DerpEngine::DerpEngine() : is_debug_mode(true) {
+DerpEngine::DerpEngine() : is_debug_mode(true){
+
 	std::cout << "starting app \n";
 
-	this->init();
-
-	//this->is_debug_mode = true;
-
-	//this->init_python();
-
-	// this->init();
+	this->check_hardware();
+	this->init_graphics();
 }
 
-bool DerpEngine::init() {
-	// this->herp = 15;
-	// std::cout << "inside init";
+bool DerpEngine::check_hardware() {
+	std::cout << "Starting init \n ";
 
-	//this->check_hardware();
-
+	this->check_enough_disk_space();
 	//this->mhz = this->get_cpu_speed();
 	//std::cout << mhz << std::endl;
+	this->get_cpu_architecture();
+	this->check_memory();
+	//this->check_io_devices();
 
-	//this->get_cpu_architecture();
+	std::cout << "hardware cheked son \n\n";
 
 	return true;
 }
 
-unsigned int DerpEngine::get_aviliable_disk_space() {
+
+unsigned int DerpEngine::check_enough_disk_space() {
 	// int const drive = _getdrive();
 	// struct _diskfree_t diskfree;  
 	// _getdiskfree(drive, &diskfree);  
@@ -47,26 +49,24 @@ unsigned int DerpEngine::get_aviliable_disk_space() {
 	// (diskfree.sectors_per_cluster*diskfree.bytes_per_sector);  
 
 	// return diskfree.avail_clusters*diskfree.bytes_per_sector;
-	/*
+	
 	const DWORDLONG disk_bytes_needed = 300000000;
 
-	//int const drive = _getdrive();
-	int const drive = 0;
+	int const drive = _getdrive();
+	//int const drive = 0;
 	struct _diskfree_t diskfree;
 	_getdiskfree(drive, &diskfree);
 	unsigned __int64 const needed_clusters = disk_bytes_needed /
 		(diskfree.sectors_per_cluster*diskfree.bytes_per_sector);
 	if (diskfree.avail_clusters < needed_clusters) {
-		std::cout << "NOT ENOUGH SPACE" << std::endl;
+		std::cout << "ERROR NOT ENOUGH SPACE" << std::endl;
 		return false;
 	}
 	return true;
-	*/
-	return 0;
 }
 
 unsigned int DerpEngine::get_cpu_speed() {
-	/*
+	
 	DWORD buffer_size = sizeof(DWORD);
 	DWORD mhz = 0;
 	DWORD value_type = REG_DWORD;
@@ -83,13 +83,9 @@ unsigned int DerpEngine::get_cpu_speed() {
 		return 0;
 	}
 	return mhz;
-	*/
-	return 0;
 }
 
 std::string DerpEngine::get_cpu_architecture() {
-
-	/*
 
 	TCHAR architecture[1024];
 	DWORD architecture_length = sizeof(architecture);
@@ -102,6 +98,26 @@ std::string DerpEngine::get_cpu_architecture() {
 			reinterpret_cast<LPBYTE>(&architecture), &architecture_length);
 	}
 	std::cout << architecture << std::endl;
-	*/
-	return "you are a penis";
+	
+	return "DERP";
+}
+
+//plz fix this
+void DerpEngine::check_memory() {
+
+	MEMORYSTATUSEX memoryStatus;
+	GlobalMemoryStatusEx(&memoryStatus);
+
+	DWORDLONG phyiscal_memory = memoryStatus.ullAvailPhys;
+
+	DWORDLONG virtual_memory = memoryStatus.ullAvailVirtual;
+
+	std::cout << "You have " << phyiscal_memory << " avaliable bytes for phyisical memory." << std::endl;
+
+	std::cout << "You have " << virtual_memory << " avaliable bytes for virtual memory." << std::endl;
+
+}
+
+void DerpEngine::init_graphics() {
+	DerpEngine::render_window.create(sf::VideoMode(800, 600), "Derp Engine", sf::Style::Close);
 }

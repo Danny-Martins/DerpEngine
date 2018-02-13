@@ -1,3 +1,8 @@
 ﻿  DerpEngine.cpp
-  DerpEngine.vcxproj -> C:\Users\Danny\Desktop\Derp Engine\DerpEngine\Debug\DerpEngine.exe
-  DerpEngine.vcxproj -> C:\Users\Danny\Desktop\Derp Engine\DerpEngine\Debug\DerpEngine.pdb (Partial PDB)
+DerpEngine.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QAE@PBDABVlocale@std@@@Z) referenced in function "public: __thiscall DerpEngine::DerpEngine(void)" (??0DerpEngine@@QAE@XZ)
+DerpEngine.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::String::~String(void)" (__imp_??1String@sf@@QAE@XZ) referenced in function "public: __thiscall DerpEngine::DerpEngine(void)" (??0DerpEngine@@QAE@XZ)
+DerpEngine.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QAE@III@Z) referenced in function "public: __thiscall DerpEngine::DerpEngine(void)" (??0DerpEngine@@QAE@XZ)
+DerpEngine.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QAE@VVideoMode@1@ABVString@1@IABUContextSettings@1@@Z) referenced in function "public: __thiscall DerpEngine::DerpEngine(void)" (??0DerpEngine@@QAE@XZ)
+DerpEngine.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __thiscall sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UAE@XZ) referenced in function __unwindfunclet$??0DerpEngine@@QAE@XZ$2
+Main.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __thiscall sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UAE@XZ)
+C:\Users\Danny\Desktop\Derp Engine\DerpEngine\Debug\DerpEngine.exe : fatal error LNK1120: 5 unresolved externals

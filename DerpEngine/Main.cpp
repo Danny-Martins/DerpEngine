@@ -8,9 +8,9 @@
 int main() {
 
 	DerpEngine application;
-	//system("pause");
+	system("pause");
 
-	std::cout << "help me";
+	//std::cout << "help me";
 
 	return 0;
 }
