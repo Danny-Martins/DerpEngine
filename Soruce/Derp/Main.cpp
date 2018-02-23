@@ -5,7 +5,7 @@
 
 int main(){
 	DerpEngine application;
-	//application.main_loop();
+	application.main_loop();
 
 	//system("pause");
 	/*

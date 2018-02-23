@@ -2,18 +2,22 @@
 
 #include <string>
 #include <vector>
+#include "Component.h"
+#include "Transform.h"
 
 class GameObject {
 	public:
-		static GameObject& find(std::string object_name);
+		//static GameObject& find(std::string object_name);
 
 		GameObject(std::string name);
 
 		void add_child(GameObject* child);
 		void set_parent(GameObject& parent);
 
-		void Start();
-		void Update(float deleta_time);
+		void add_component(Component* component);
+
+		void start();
+		void update(float deleta_time);
 
 
 	public:
@@ -21,6 +25,7 @@ class GameObject {
 
 		GameObject* parent;
 		std::vector<GameObject*> children;
+		std::vector<Component*> components;
 
-
+		Transform* transform;
 };
