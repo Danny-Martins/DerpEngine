@@ -10,6 +10,8 @@
 class DerpEngine {
 
 public:
+	static sf::RenderWindow *render_window;
+
 	const bool is_debug_mode;
 	unsigned int mhz;
 
@@ -18,7 +20,7 @@ public:
 	void main_loop();
 
 private:
-	sf::RenderWindow render_window;
+	
 
 	GameObjectManager scene_root;
 
@@ -50,5 +52,5 @@ private:
 	void init_graphics();
 	void init_audio();
 
-	//main loop
+	void setup_scene();
 };

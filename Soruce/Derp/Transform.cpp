@@ -9,7 +9,7 @@ void Transform::start(){
 	//
 }
 
-void Transform::update(){
+void Transform::update(float delta_time){
 	//
 }
 

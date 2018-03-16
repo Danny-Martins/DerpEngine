@@ -20,6 +20,11 @@
 
 #include "GameObject.h"
 
+//game play gameobjects
+#include "Wigi.h"
+
+sf::RenderWindow* DerpEngine::render_window;
+
 DerpEngine::DerpEngine() : is_debug_mode(true), scene_root() {
 
 	std::cout << "starting app \n";
@@ -28,6 +33,8 @@ DerpEngine::DerpEngine() : is_debug_mode(true), scene_root() {
 
 	std::thread hardware_check_thread(&DerpEngine::check_hardware, this);
 
+
+	this->render_window = new sf::RenderWindow();
 	this->init_graphics();
 	this->display_splash_screen();
 
@@ -144,7 +151,7 @@ void DerpEngine::check_joypads() {
 }
 
 void DerpEngine::init_graphics() {
-	this->render_window.create({ 800, 600 }, "Derp Engine");
+	this->render_window->create({ 800, 600 }, "Derp Engine");
 }
 
 void DerpEngine::display_splash_screen(){
@@ -153,7 +160,7 @@ void DerpEngine::display_splash_screen(){
 
 	if (!image.loadFromFile("..\\Assets\\SplashScreen.jpg"))
 	{
-		std::cout << "error 409" << std::endl;
+		std::cout << "Error could not load splash screen image" << std::endl;
 		return;
 	}
 
@@ -161,29 +168,37 @@ void DerpEngine::display_splash_screen(){
 
 	while (engine_current_state != Initialized)
 	{
-		render_window.clear();
-		render_window.draw(sprite);
-		this->render_window.display();
+		render_window->clear();
+		render_window->draw(sprite);
+		this->render_window->display();
 	}
+}
+
+void DerpEngine::setup_scene() {
+
+	this->scene_root.add_to_graph((GameObject*)new Wigi());
 }
 
 void DerpEngine::main_loop() {
 
+	this->setup_scene();
 	this->scene_root.start();
 
-	while (this->render_window.isOpen())
+	while (this->render_window->isOpen())
 	{
+		
 		sf::Event event;
 
-		while (this->render_window.pollEvent(event))
+		while (this->render_window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				this->render_window.close();
+				this->render_window->close();
 		}
 
+		this->render_window->clear();
 		this->scene_root.update(0.0f);
+		this->render_window->display();
 
-		this->render_window.clear();
-		this->render_window.display();
+		
 	}
 }

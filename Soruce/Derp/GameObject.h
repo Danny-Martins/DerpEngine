@@ -18,6 +18,7 @@ class GameObject {
 
 		void start();
 		void update(float deleta_time);
+		void render();
 
 
 	public:

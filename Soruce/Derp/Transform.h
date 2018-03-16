@@ -7,8 +7,8 @@
 class Transform : public Component, sf::Transformable{
 public:
 	Transform();
-	void start();
-	void update();
+	void start() override;
+	void update(float delta_time) override;
 
 	void translate(Vector3 vector);
 	void rotate(float degrees);
