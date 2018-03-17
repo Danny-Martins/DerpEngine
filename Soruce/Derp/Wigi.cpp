@@ -2,31 +2,56 @@
 
 #include "Wigi.h"
 
-void penis();
+Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(1) {
 
-Wigi::Wigi() : GameObject("Wigi") {
-	
 	SpriteRenderer* sprite_renderer = new SpriteRenderer();
 	sprite_renderer->set_sprite("..\\Assets\\Wigi.png");
 	this->add_component(sprite_renderer);
+	
+	this->transform->setScale(sf::Vector2f(0.25f, 0.25f));
 
+	/*
 	InputHandler* input_handler = new InputHandler();
-	input_handler->add_binding(sf::Keyboard::A, penis);
+	//input_handler->add_binding(sf::Keyboard::A, penis);
 	this->add_component(input_handler);
+	*/
 }
 
-void penis() {
-	std::cout << "penis" << std::endl;
-}
+void Wigi::update(float delta_time) {
+	GameObject::update(delta_time);
 
-void Wigi::rotate_left() {
-	std::cout << "rotate left" << std::endl;
-}
+	sf::Vector2f temp_position = this->transform->getPosition();
 
-void Wigi::rotate_right() {
-	std::cout << "rotate right" << std::endl;
-}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		temp_position.x -= move_speed;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		temp_position.x += move_speed;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		temp_position.y -= move_speed;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		temp_position.y += move_speed;
+	}
+	
+	this->transform->setPosition(temp_position);
+	//this->transform->sf_transform.translate(temp_position).rotate(0.0f);
 
-void Wigi::thrust() {
-	std::cout << "Thrust" << std::endl;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+		this->transform->rotate(-0.25f);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+		this->transform->rotate(0.25f);
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+		this->transform->scale(sf::Vector2f(0.995f, 0.995f));
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+		this->transform->scale(sf::Vector2f(1.005f, 1.005f));
+	}
+
+	//std::cout << 
 }

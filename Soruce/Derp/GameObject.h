@@ -9,16 +9,18 @@ class GameObject {
 	public:
 		//static GameObject& find(std::string object_name);
 
-		GameObject(std::string name);
+		GameObject(std::string name, GameObject* parent);
 
 		void add_child(GameObject* child);
-		void set_parent(GameObject& parent);
+		void set_parent(GameObject* parent);
 
 		void add_component(Component* component);
 
-		void start();
-		void update(float deleta_time);
+		virtual void start();
+		virtual void update(float deleta_time);
 		void render();
+
+		sf::Transform get_world_transform();
 
 
 	public:

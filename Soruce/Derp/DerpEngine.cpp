@@ -176,13 +176,23 @@ void DerpEngine::display_splash_screen(){
 
 void DerpEngine::setup_scene() {
 
-	this->scene_root.add_to_graph((GameObject*)new Wigi());
+	Wigi* wigi = new Wigi();
+	GameObject* uganda = new GameObject("Uganda", (GameObject*)wigi);
+	SpriteRenderer* sprite_renderer = new SpriteRenderer();
+	sprite_renderer->set_sprite("..\\Assets\\Uganda.png");
+	uganda->add_component(sprite_renderer);
+	uganda->set_parent((GameObject*)wigi);
+	uganda->transform->setPosition(50.0f, 50.0f);
+
+	//std::cout << std::endl << uganda->parent->name << std::endl;
 }
 
 void DerpEngine::main_loop() {
 
 	this->setup_scene();
 	this->scene_root.start();
+
+	sf::Clock derpy_clock;
 
 	while (this->render_window->isOpen())
 	{
@@ -195,8 +205,9 @@ void DerpEngine::main_loop() {
 				this->render_window->close();
 		}
 
+		sf::Time delta_time = derpy_clock.restart();
 		this->render_window->clear();
-		this->scene_root.update(0.0f);
+		this->scene_root.update(delta_time.asMilliseconds());
 		this->render_window->display();
 
 		
