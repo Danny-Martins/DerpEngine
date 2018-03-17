@@ -14,30 +14,42 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/System.hpp>
 
 #include "DerpEngine.h"
 
-DerpEngine::DerpEngine() : is_debug_mode(true){
+#include "GameObject.h"
+
+DerpEngine::DerpEngine() : is_debug_mode(true), scene_root() {
 
 	std::cout << "starting app \n";
 
-	this->check_hardware();
+	engine_current_state = Uninitialized;
+
+	std::thread hardware_check_thread(&DerpEngine::check_hardware, this);
+
 	this->init_graphics();
+	this->display_splash_screen();
+
+	hardware_check_thread.join();
+
+	//this->main_loop();
 }
 
-bool DerpEngine::check_hardware() {
-	std::cout << "Starting init \n ";
+void DerpEngine::check_hardware() {
+	std::cout << "Starting init" << std::endl;
 
 	this->check_enough_disk_space();
-	//this->mhz = this->get_cpu_speed();
-	//std::cout << mhz << std::endl;
+	this->get_cpu_speed();
 	this->get_cpu_architecture();
 	this->check_memory();
-	//this->check_io_devices();
+	this->check_joypads();
 
-	std::cout << "hardware cheked son \n\n";
+	engine_current_state = Initialized;
 
-	return true;
+	std::cout << "hardware cheked son \n" << std::endl;
+
+	return;
 }
 
 
@@ -60,7 +72,7 @@ unsigned int DerpEngine::check_enough_disk_space() {
 		(diskfree.sectors_per_cluster*diskfree.bytes_per_sector);
 	if (diskfree.avail_clusters < needed_clusters) {
 		std::cout << "ERROR NOT ENOUGH SPACE" << std::endl;
-		return false;
+		assert(false);
 	}
 	return true;
 }
@@ -82,6 +94,9 @@ unsigned int DerpEngine::get_cpu_speed() {
 		std::cout << "Could get CPU speed";
 		return 0;
 	}
+
+	assert(mhz > 1000);
+
 	return mhz;
 }
 
@@ -102,15 +117,17 @@ std::string DerpEngine::get_cpu_architecture() {
 	return "DERP";
 }
 
-//plz fix this
 void DerpEngine::check_memory() {
 
-	MEMORYSTATUSEX memoryStatus;
+	MEMORYSTATUSEX memoryStatus = { sizeof memoryStatus };
 	GlobalMemoryStatusEx(&memoryStatus);
 
-	DWORDLONG phyiscal_memory = memoryStatus.ullAvailPhys;
+	const DWORDLONG phyiscal_memory = memoryStatus.ullAvailPhys;
 
 	DWORDLONG virtual_memory = memoryStatus.ullAvailVirtual;
+
+	assert(phyiscal_memory > 90555520);
+	assert(virtual_memory > 90555520);
 
 	std::cout << "You have " << phyiscal_memory << " avaliable bytes for phyisical memory." << std::endl;
 
@@ -118,11 +135,42 @@ void DerpEngine::check_memory() {
 
 }
 
+void DerpEngine::check_joypads() {
+	int i = 0;
+	while (sf::Joystick::isConnected(i)) {
+		std::cout << "Joystick " << i << " is connected" << std::endl;
+		i++;
+	}
+}
+
 void DerpEngine::init_graphics() {
-	this->render_window.create( {800, 600}, "Derp Engine");
+	this->render_window.create({ 800, 600 }, "Derp Engine");
+}
+
+void DerpEngine::display_splash_screen(){
+
+	sf::Texture image;
+
+	if (!image.loadFromFile("..\\..\\Assets\\SplashScreen.jpg"))
+	{
+		std::cout << "error 409" << std::endl;
+		return;
+	}
+
+	sf::Sprite sprite(image);
+
+	while (engine_current_state != Initialized)
+	{
+		render_window.clear();
+		render_window.draw(sprite);
+		this->render_window.display();
+	}
 }
 
 void DerpEngine::main_loop() {
+
+	this->scene_root.start();
+
 	while (this->render_window.isOpen())
 	{
 		sf::Event event;
@@ -132,6 +180,8 @@ void DerpEngine::main_loop() {
 			if (event.type == sf::Event::Closed)
 				this->render_window.close();
 		}
+
+		this->scene_root.update(0.0f);
 
 		this->render_window.clear();
 		this->render_window.display();

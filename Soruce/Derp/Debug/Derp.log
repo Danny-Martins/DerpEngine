@@ -1,5 +1,3 @@
-﻿  Main.cpp
-  DerpEngine.cpp
-  Generating Code...
-  Derp.vcxproj -> C:\Users\User\Desktop\Derp Engine\DerpEngine\Soruce\Debug\Derp.exe
-  Derp.vcxproj -> C:\Users\User\Desktop\Derp Engine\DerpEngine\Soruce\Debug\Derp.pdb (Partial PDB)
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  Transform.cpp
+  Derp.vcxproj -> C:\Users\Nikolai\Desktop\DerpEngine-Danny-Branch\Soruce\..\Game\Derp.exe

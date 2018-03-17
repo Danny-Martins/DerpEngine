@@ -1,0 +1,54 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(376,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  DerpEngine.cpp
+  Main.cpp
+  PhyisicsEngine.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\xstddef(156): error C2678: binary '<': no operator found which takes a left-hand operand of type 'const PhyisicsEngine::CollisionPair' (or there is no acceptable conversion)
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\thread(217): note: could be 'bool std::operator <(std::thread::id,std::thread::id) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\system_error(405): note: or       'bool std::operator <(const std::error_condition &,const std::error_condition &) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\system_error(398): note: or       'bool std::operator <(const std::error_code &,const std::error_code &) noexcept'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\xstddef(156): note: while trying to match the argument list '(const PhyisicsEngine::CollisionPair, const PhyisicsEngine::CollisionPair)'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\xstddef(155): note: while compiling class template member function 'bool std::less<_Kty>::operator ()(const _Ty &,const _Ty &) const'
+          with
+          [
+              _Kty=PhyisicsEngine::CollisionPair,
+              _Ty=PhyisicsEngine::CollisionPair
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\xutility(1064): note: see reference to function template instantiation 'bool std::less<_Kty>::operator ()(const _Ty &,const _Ty &) const' being compiled
+          with
+          [
+              _Kty=PhyisicsEngine::CollisionPair,
+              _Ty=PhyisicsEngine::CollisionPair
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\type_traits(617): note: see reference to class template instantiation 'std::less<_Kty>' being compiled
+          with
+          [
+              _Kty=PhyisicsEngine::CollisionPair
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\type_traits(622): note: see reference to class template instantiation 'std::is_empty<_Ty>' being compiled
+          with
+          [
+              _Ty=std::less<PhyisicsEngine::CollisionPair>
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\xutility(298): note: see reference to variable template 'const bool is_empty_v<std::less<PhyisicsEngine::CollisionPair> >' being compiled
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\xtree(842): note: see reference to class template instantiation 'std::_Tree_comp_alloc<_Traits>' being compiled
+          with
+          [
+              _Traits=std::_Tmap_traits<PhyisicsEngine::CollisionPair,PhyisicsEngine::CollisionInfo,std::less<PhyisicsEngine::CollisionPair>,std::allocator<std::pair<const PhyisicsEngine::CollisionPair,PhyisicsEngine::CollisionInfo>>,false>
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\map(81): note: see reference to class template instantiation 'std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>' being compiled
+          with
+          [
+              _Kty=PhyisicsEngine::CollisionPair,
+              _Ty=PhyisicsEngine::CollisionInfo,
+              _Pr=std::less<PhyisicsEngine::CollisionPair>,
+              _Alloc=std::allocator<std::pair<const PhyisicsEngine::CollisionPair,PhyisicsEngine::CollisionInfo>>
+          ]
+  c:\users\nikolai\desktop\derpengine-danny-branch\soruce\derp\phyisicsengine.h(35): note: see reference to class template instantiation 'std::map<PhyisicsEngine::CollisionPair,PhyisicsEngine::CollisionInfo,std::less<_Kty>,std::allocator<std::pair<const _Kty,_Ty>>>' being compiled
+          with
+          [
+              _Kty=PhyisicsEngine::CollisionPair,
+              _Ty=PhyisicsEngine::CollisionInfo
+          ]
+  Rigidbody.cpp
+  Generating Code...
