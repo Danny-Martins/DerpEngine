@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "Component.h"
-#include "GameObject.h"
 
 class PhysicsEngine;
 

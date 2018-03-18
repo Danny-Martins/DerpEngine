@@ -1,10 +1,7 @@
 #pragma once
 
-#include <string>
-#include <vector>
 #include "Component.h"
 #include "Transform.h"
-
 
 class GameObject {
 	public:
@@ -17,7 +14,14 @@ class GameObject {
 
 		void add_component(Component* component);
 
-		template <typename component> component* get_component();
+		template <typename component>
+		inline component* get_component() {
+			for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
+				if (dynamic_cast<component*> ((*itorator)) != NULL)
+					return (component*)(*itorator);
+			}
+			return nullptr;
+		}
 
 		virtual void start();
 		virtual void update(const float deleta_time);
@@ -34,10 +38,4 @@ class GameObject {
 		std::vector<Component*> components;
 
 		Transform* transform;
-
-		sf::Vector2f bottom_left;
-		sf::Vector2f top_right;
-
-		float half_width;
-		float half_height;
 };

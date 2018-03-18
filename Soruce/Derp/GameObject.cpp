@@ -1,6 +1,5 @@
 #include "GameObject.h"
 #include "GameObjectManager.h"
-#include "SpriteRenderer.h"
 #include <iostream>
 
 GameObject::GameObject(std::string name, GameObject* parent){
@@ -25,6 +24,7 @@ void GameObject::add_component(Component* component) {
 	this->components.push_back(component);
 }
 
+/*
 template <typename component>
 component* GameObject::get_component() {
 	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
@@ -32,7 +32,9 @@ component* GameObject::get_component() {
 			std::cout << "it worked!" << std::endl;
 		}
 	}
+	return nullptr;
 }
+*/
 
 void GameObject::add_child(GameObject* child) {
 	std::cout << "Added " << child->name << " as a child of " << this->name;
@@ -50,6 +52,10 @@ void GameObject::start() {
 }
 
 void GameObject::update(const float delta_time) {
+
+	if (this->name == "Wigi") {
+		//std::cout << "Bottom Left: " << this->bottom_left.x << " Top Right: " << this->top_right.x << std::endl;
+	}
 
 	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
 		(*itorator)->update(delta_time);

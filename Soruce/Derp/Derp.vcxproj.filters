@@ -57,6 +57,9 @@
     <ClCompile Include="PhyisicsEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DerpEngine.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="PhyisicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>

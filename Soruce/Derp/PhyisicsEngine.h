@@ -29,6 +29,7 @@ class PhysicsEngine {
 		void update_gameobjects_phyisics(float delta_time);
 		bool is_grounded(Rigidbody* object_rigidbody);
 		PhysicsEngine();
+		void update_phyisics(float delta_time);
 
 	private:
 		std::map<CollisionPair*, CollisionInfo*> collision_list;
@@ -38,5 +39,4 @@ class PhysicsEngine {
 		void check_collisions();
 		void resolve_collisons();
 		void correct_positions(CollisionPair *pair);
-		void update_phyisics(float delta_time);
 };

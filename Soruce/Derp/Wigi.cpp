@@ -1,6 +1,8 @@
 #include <iostream>
 
 #include "Wigi.h"
+#include "Rigidbody.h"
+#include "SpriteRenderer.h"
 
 Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(1) {
 
@@ -8,13 +10,8 @@ Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(1) {
 	sprite_renderer->set_sprite("..\\Assets\\Wigi.png");
 	this->add_component(sprite_renderer);
 	
-	this->transform->setScale(sf::Vector2f(0.25f, 0.25f));
+	//this->transform->setScale(sf::Vector2f(0.25f, 0.25f));
 	this->transform->setPosition(375.0f, 50.0f);
-
-	this->half_width = sprite_renderer->get_sprite().getGlobalBounds().width / 2;
-	this->half_height = sprite_renderer->get_sprite().getGlobalBounds().height / 2;
-
-	this->add_component(new Rigidbody());
 
 	/*
 	InputHandler* input_handler = new InputHandler();
@@ -58,14 +55,6 @@ void Wigi::update(float delta_time) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 		this->transform->scale(sf::Vector2f(1.005f, 1.005f));
 	}
-
-	this->bottom_left = this->transform->getPosition();
-	this->bottom_left.x -= this->half_width;
-	this->bottom_left.y += this->half_height;
-
-	this->top_right = this->transform->getPosition();
-	this->top_right.x += this->half_width;
-	this->top_right.y -= this->half_height;
 
 	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)) {

@@ -20,8 +20,8 @@ bool Rigidbody::is_grounded() {
 
 void Rigidbody::set_aabb(){
 	//TODO get size of box from sprite
-	aabb.bottom_left = this->game_object->bottom_left;
-	aabb.top_right = this->game_object->top_right;
+	//aabb.bottom_left = this->game_object->bottom_left;
+	//aabb.top_right = this->game_object->top_right;
 }
 
 void Rigidbody::stop() {

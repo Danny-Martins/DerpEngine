@@ -22,6 +22,8 @@
 
 //game play gameobjects
 #include "Wigi.h"
+#include "Rigidbody.h"
+#include "SpriteRenderer.h"
 
 sf::RenderWindow* DerpEngine::render_window;
 
@@ -169,14 +171,17 @@ void DerpEngine::display_splash_screen(){
 void DerpEngine::setup_scene() {
 
 	Wigi* wigi = new Wigi();
+	/*
 	GameObject* uganda = new GameObject("Uganda", nullptr);
 	SpriteRenderer* sprite_renderer = new SpriteRenderer();
 	sprite_renderer->set_sprite("..\\Assets\\Uganda.png");
+	uganda->half_width = sprite_renderer->get_sprite().getGlobalBounds().width / 2;
+	uganda->half_height = sprite_renderer->get_sprite().getGlobalBounds().height / 2;
 	uganda->add_component(sprite_renderer);
-	Rigidbody* rigidbody = new Rigidbody();
-	//rigidbody->mass = 0.0f;
-	uganda->add_component(rigidbody);
+	//Rigidbody* rigidbody = new Rigidbody();
+	//uganda->add_component(rigidbody);
 	uganda->transform->setPosition(375.0f, 400.0f);
+	*/
 
 	//std::cout << std::endl << uganda->parent->name << std::endl;
 }
@@ -186,7 +191,7 @@ void DerpEngine::main_loop() {
 	this->setup_scene();
 	this->scene_root.start();
 
-	sf::Clock derpy_clock;
+	sf::Clock delta_time_clock;
 
 	while (this->render_window->isOpen())
 	{
@@ -199,12 +204,10 @@ void DerpEngine::main_loop() {
 				this->render_window->close();
 		}
 
-		sf::Time delta_time = derpy_clock.restart();
+		float delta_time = (float)delta_time_clock.restart().asMilliseconds();
 		this->render_window->clear();
-		this->physics_engine.update_gameobjects_phyisics(delta_time.asMilliseconds());
-		this->scene_root.update(delta_time.asMilliseconds());
+		this->physics_engine.update_phyisics(delta_time);
+		this->scene_root.update(delta_time);
 		this->render_window->display();
-
-		
 	}
 }
