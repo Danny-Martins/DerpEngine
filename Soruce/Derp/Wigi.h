@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "SpriteRenderer.h"
 #include "InputHandeler.hpp"
+#include "Rigidbody.h"
 
 //typedef void key_function();
 

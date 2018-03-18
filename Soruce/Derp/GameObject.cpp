@@ -25,6 +25,15 @@ void GameObject::add_component(Component* component) {
 	this->components.push_back(component);
 }
 
+template <typename component>
+component* GameObject::get_component() {
+	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
+		if (dynamic_cast<component*> ((*itorator)) != NULL) {
+			std::cout << "it worked!" << std::endl;
+		}
+	}
+}
+
 void GameObject::add_child(GameObject* child) {
 	std::cout << "Added " << child->name << " as a child of " << this->name;
 	this->children.push_back(child);
@@ -40,28 +49,15 @@ void GameObject::start() {
 	}
 }
 
-void GameObject::update(float delta_time) {
-	//sf::Transform transform = this->transform->getTransform();
-	//transform.combine(this->parent->transform->getTransform());
-	//this->transform->getTransform() = transform;
+void GameObject::update(const float delta_time) {
 
 	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
 		(*itorator)->update(delta_time);
 	}
 	
 	for (std::vector<GameObject*>::iterator itorator = this->children.begin(); itorator != this->children.end(); itorator++) {
-		//sf::Transform transform = (*itorator)->transform->getTransform() * this->transform->getTransform();
 		(*itorator)->update(delta_time);
 	}
-
-	if (this->name == "Uganda") {
-		//this->transform->sf_transform.translate(sf::Vector2f(0.05f, 0.05f));
-		//for(int row = 0; )
-		
-		//std::cout << *transform.getMatrix() << std::endl;
-	}
-
-	//std::cout << "gameobject" << std::endl;
 }
 
 sf::Transform GameObject::get_world_transform() {

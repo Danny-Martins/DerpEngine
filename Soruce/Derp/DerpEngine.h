@@ -6,6 +6,9 @@
 #include <SFML/Graphics.hpp>
 #include <thread>
 #include "GameObjectManager.h"
+#include "PhyisicsEngine.h"
+
+class PhysicsEngine;
 
 class DerpEngine {
 
@@ -21,7 +24,7 @@ public:
 
 private:
 	
-
+	PhysicsEngine physics_engine;
 	GameObjectManager scene_root;
 
 	enum ENGINE_STATE

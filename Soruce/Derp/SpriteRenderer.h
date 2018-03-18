@@ -10,7 +10,7 @@ class SpriteRenderer : public Component {
 		void start() override;
 		void update(float delta_time) override;
 		void set_sprite(std::string image_path);
-
+		sf::Sprite get_sprite();
 
 	private:
 		sf::Sprite sprite;

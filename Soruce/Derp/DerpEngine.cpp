@@ -25,7 +25,7 @@
 
 sf::RenderWindow* DerpEngine::render_window;
 
-DerpEngine::DerpEngine() : is_debug_mode(true), scene_root() {
+DerpEngine::DerpEngine() : is_debug_mode(true), scene_root(), physics_engine(){
 
 	std::cout << "starting app \n";
 
@@ -61,14 +61,6 @@ void DerpEngine::check_hardware() {
 
 
 unsigned int DerpEngine::check_enough_disk_space() {
-	// int const drive = _getdrive();
-	// struct _diskfree_t diskfree;  
-	// _getdiskfree(drive, &diskfree);  
-	// unsigned __int64 const needed_clusters = disk_bytes_needed /
-	// (diskfree.sectors_per_cluster*diskfree.bytes_per_sector);  
-
-	// return diskfree.avail_clusters*diskfree.bytes_per_sector;
-
 	const DWORDLONG disk_bytes_needed = 300000000;
 
 	int const drive = _getdrive();
@@ -177,12 +169,14 @@ void DerpEngine::display_splash_screen(){
 void DerpEngine::setup_scene() {
 
 	Wigi* wigi = new Wigi();
-	GameObject* uganda = new GameObject("Uganda", (GameObject*)wigi);
+	GameObject* uganda = new GameObject("Uganda", nullptr);
 	SpriteRenderer* sprite_renderer = new SpriteRenderer();
 	sprite_renderer->set_sprite("..\\Assets\\Uganda.png");
 	uganda->add_component(sprite_renderer);
-	uganda->set_parent((GameObject*)wigi);
-	uganda->transform->setPosition(50.0f, 50.0f);
+	Rigidbody* rigidbody = new Rigidbody();
+	//rigidbody->mass = 0.0f;
+	uganda->add_component(rigidbody);
+	uganda->transform->setPosition(375.0f, 400.0f);
 
 	//std::cout << std::endl << uganda->parent->name << std::endl;
 }
@@ -207,6 +201,7 @@ void DerpEngine::main_loop() {
 
 		sf::Time delta_time = derpy_clock.restart();
 		this->render_window->clear();
+		this->physics_engine.update_gameobjects_phyisics(delta_time.asMilliseconds());
 		this->scene_root.update(delta_time.asMilliseconds());
 		this->render_window->display();
 
