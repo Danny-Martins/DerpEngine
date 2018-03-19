@@ -1,17 +1,22 @@
 #include "PhyisicsEngine.h"
 #include <cmath>
+#include <algorithm>
+#include <numeric>
+#include <SFML\System\Vector2.hpp>
+#include <iostream>
 
-PhyisicsEngine* PhyisicsEngine::phyisics_engine_instance;
 
-PhyisicsEngine::PhyisicsEngine(){
-	PhyisicsEngine::phyisics_engine_instance = this;
+PhysicsEngine* PhysicsEngine::phyisics_engine_instance;
+
+PhysicsEngine::PhysicsEngine(){
+	PhysicsEngine::phyisics_engine_instance = this;
 }
 
-void PhyisicsEngine::add_rigidBody(Rigidbody* object_rigidbody){
+void PhysicsEngine::add_rigidBody(Rigidbody* object_rigidbody){
 	rigidbodies_list.push_back(object_rigidbody);
 }
 
-void PhyisicsEngine::update_gameobjects_phyisics(float delta_time)
+void PhysicsEngine::update_gameobjects_phyisics(float delta_time)
 {
 	for each (Rigidbody *rigidbody in rigidbodies_list)
 	{
@@ -19,7 +24,7 @@ void PhyisicsEngine::update_gameobjects_phyisics(float delta_time)
 	}
 }
 
-bool PhyisicsEngine::is_grounded(Rigidbody* object_rigidbody)
+bool PhysicsEngine::is_grounded(Rigidbody* object_rigidbody)
 {
 	for each (Rigidbody *rigidbody in rigidbodies_list)
 	{
@@ -37,67 +42,190 @@ bool PhyisicsEngine::is_grounded(Rigidbody* object_rigidbody)
 	return false;
 }
 
-void PhyisicsEngine::check_collisions()
+void PhysicsEngine::check_collisions()
 {
-	for each (Rigidbody *rigidbody_a in rigidbodies_list) {
-		for each (Rigidbody *rigidbody_b in rigidbodies_list) {
-			CollisionPair pair;
-			CollisionInfo info;
+	for (std::list<Rigidbody*>::iterator rigidbody_a = rigidbodies_list.begin(); rigidbody_a != rigidbodies_list.end(); rigidbody_a++) {
+		for (std::list<Rigidbody*>::iterator rigidbody_b = rigidbody_a; rigidbody_b != rigidbodies_list.end(); rigidbody_b++) {
 
-			pair.object_rigidbody_a = rigidbody_a;
-			pair.object_rigidbody_b = rigidbody_b;
+			if (rigidbody_a == rigidbody_b)
+				continue;
+			else
+			{
+				CollisionPair *pair = new CollisionPair();
+				CollisionInfo *info = new CollisionInfo();
 
-			sf::Vector2f distance;
-			//
+				pair->object_rigidbody_a = *rigidbody_a;
+				pair->object_rigidbody_b = *rigidbody_b;
 
-			sf::Vector2f halfSizeA = (rigidbody_a->aabb.top_right - rigidbody_a->aabb.bottom_left) * 0.5f;
-			sf::Vector2f halfSizeB = (rigidbody_b->aabb.top_right - rigidbody_b->aabb.bottom_left) * 0.5f;
+				sf::Vector2f distance = (*rigidbody_b)->game_object->transform->getPosition() - (*rigidbody_a)->game_object->transform->getPosition();
 
-			sf::Vector2f gap = sf::Vector2f(abs(distance.x), abs(distance.y)) - (halfSizeA + halfSizeB);
+				sf::Vector2f half_size_a = ((*rigidbody_a)->aabb.top_right - (*rigidbody_a)->aabb.bottom_left) * 0.5f;
+				sf::Vector2f half_size_b = ((*rigidbody_b)->aabb.top_right - (*rigidbody_b)->aabb.bottom_left) * 0.5f;
 
-			std::map<CollisionPair, CollisionInfo>::iterator it;
-			it = collisionPair.find(pair);
+				sf::Vector2f gap = sf::Vector2f(abs(distance.x), abs(distance.y)) - (half_size_a + half_size_b);
 
-			/*if (gap.x < 0 && gap.y < 0) {
+				if (gap.x < 0 && gap.y < 0) {
 
-				//if (it != collisionPair.end()) {
-					//collisionPair.erase(pair);
-				//}
-
-				if (gap.x > gap.y) {
-					if (distance.x > 0) {
-						// ... Update collision normal
-						info.collisonNormal = sf::Vector2f(1, 0);
+					if (gap.x > gap.y) {
+						if (distance.x > 0) {
+							info->collisonNormal = sf::Vector2f(1, 0);
+						}
+						else {
+							info->collisonNormal = sf::Vector2f(-1, 0);
+						}
+						info->penatration = gap.x;
 					}
 					else {
-						// ... Update collision normal
-						info.collisonNormal = sf::Vector2f(-1, 0);
+						if (distance.y > 0) {
+							info->collisonNormal = sf::Vector2f(0, 1);
+						}
+						else {
+							info->collisonNormal = sf::Vector2f(0, -1);
+						}
+						info->penatration = gap.y;
 					}
-					info.penatration = gap.x;
+					collision_list.insert(std::pair<CollisionPair*, CollisionInfo*>(pair, info));
 				}
-				else {
-					if (distance.y > 0) {
-						// ... Update collision normal
-						info.collisonNormal = sf::Vector2f(0, 1);
-					}
-					else {
-						// ... Update collision normal
-						info.collisonNormal = sf::Vector2f(0, -1);
-					}
-					info.penatration = gap.y;
-				}
-				collisionPair.insert(std::pair<CollisionPair, CollisionInfo>(pair, info));
 			}
-			//else if (it != collisionPair.end()) {
-			//	collisionPair.erase(pair);
-			//}*/
 		}
 	}
 }
-
-void PhyisicsEngine::update_phyisics(float delta_time)
+/*
+void PhysicsEngine::check_collisions()
 {
-	//update_gameobjects_phyisics(delta_time);
-	//check_collisions();
-	//resolve_collisons();
+	for (std::list<Rigidbody*>::iterator rigidbody_a = rigidbodies_list.begin(); rigidbody_a != rigidbodies_list.end(); rigidbody_a++) {
+		for (std::list<Rigidbody*>::iterator rigidbody_b = rigidbody_a; rigidbody_b != rigidbodies_list.end(); rigidbody_b++) {
+
+			if (rigidbody_a == rigidbody_b)
+				continue;
+			else
+			{
+				pair->object_rigidbody_a = *rigidbody_a;
+				pair->object_rigidbody_b = *rigidbody_b;
+
+				sf::Vector2f distance = (*rigidbody_b)->game_object->transform->getPosition() - (*rigidbody_a)->game_object->transform->getPosition();
+
+				sf::Vector2f half_size_a = ((*rigidbody_a)->aabb.top_right - (*rigidbody_a)->aabb.bottom_left) * 0.5f;
+				sf::Vector2f half_size_b = ((*rigidbody_b)->aabb.top_right - (*rigidbody_b)->aabb.bottom_left) * 0.5f;
+
+				sf::Vector2f gap = sf::Vector2f(abs(distance.x), abs(distance.y)) - (half_size_a + half_size_b);
+
+				std::map<CollisionPair*, CollisionInfo*>::iterator it = collision_list.find(pair);
+
+				if (gap.x < 0 && gap.y < 0) {
+					if (it != collision_list.end())
+					{
+						//std::map<CollisionPair*, CollisionInfo*>::iterator it = collision_list.find(pair);
+						collision_list.erase(it);
+					}
+
+					if (gap.x > gap.y) {
+						if (distance.x > 0) {
+							info->collisonNormal = sf::Vector2f(1, 0);
+						}
+						else {
+							info->collisonNormal = sf::Vector2f(-1, 0);
+						}
+						info->penatration = gap.x;
+					}
+					else {
+						if (distance.y > 0) {
+							info->collisonNormal = sf::Vector2f(0, 1);
+						}
+						else {
+							info->collisonNormal = sf::Vector2f(0, -1);
+						}
+						info->penatration = gap.y;
+					}
+					collision_list.insert(std::pair<CollisionPair*, CollisionInfo*>(pair, info));
+				}
+				else if(it != collision_list.end())
+				{
+					collision_list.erase(it);
+				}
+			}
+		}
+	}
+}
+*/
+
+
+void PhysicsEngine::resolve_collisons()
+{
+	for (std::map<CollisionPair*, CollisionInfo*>::iterator it = collision_list.begin(); it != collision_list.end(); it++)
+	{
+		float min_bounce = std::min(it->first->object_rigidbody_a->bounciness, it->first->object_rigidbody_b->bounciness);
+
+		sf::Vector2f temp = it->first->object_rigidbody_b->current_velocity - it->first->object_rigidbody_a->current_velocity;
+		float vel_along_normal = (temp.x * it->second->collisonNormal.y) + (temp.y * it->second->collisonNormal.y);
+
+		if (vel_along_normal > 0)
+			continue;
+
+		float j = -(1 + min_bounce) * vel_along_normal;
+
+		float inv_mass_a, inv_mass_b;
+
+		//Handle inv mass a
+		if (it->first->object_rigidbody_a->mass == 0)
+			inv_mass_a = 0;
+		else
+			inv_mass_a = 1 / it->first->object_rigidbody_a->mass;
+
+		//Handle inv mass b
+		if (it->first->object_rigidbody_b->mass == 0)
+			inv_mass_b = 0;
+		else
+			inv_mass_b = 1 / it->first->object_rigidbody_b->mass;
+
+		j /= inv_mass_a + inv_mass_b;
+
+		sf::Vector2f impulse = j * it->second->collisonNormal;
+
+		if (it->first->object_rigidbody_a->mass != 0)
+			it->first->object_rigidbody_a->current_velocity -= 1 / it->first->object_rigidbody_a->mass * impulse;
+
+		if (it->first->object_rigidbody_b->mass != 0)
+			it->first->object_rigidbody_b->current_velocity += 1 / it->first->object_rigidbody_b->mass * impulse;
+
+		if (abs(it->second->penatration) > 0.01f)
+			correct_positions(it->first);
+	}
+}
+
+void PhysicsEngine::correct_positions(CollisionPair *pair)
+{
+	const float percent = 0.2f;
+
+	float inv_mass_a, inv_mass_b;
+
+	//Handle inv mass a
+	if (pair->object_rigidbody_a->mass == 0)
+		inv_mass_a = 0;
+	else
+		inv_mass_a = 1 / pair->object_rigidbody_a->mass;
+
+	//Handle inv mass b
+	if (pair->object_rigidbody_b->mass == 0)
+		inv_mass_b = 0;
+	else
+		inv_mass_b = 1 / pair->object_rigidbody_b->mass;
+
+	sf::Vector2f correction = ((collision_list.find(pair)->second->penatration / (inv_mass_a + inv_mass_b)) * percent) * -collision_list.find(pair)->second->collisonNormal;
+
+	sf::Vector2f temp = pair->object_rigidbody_a->game_object->transform->getPosition();
+	temp -= inv_mass_a * correction;
+	pair->object_rigidbody_a->game_object->transform->setPosition(temp);
+
+	temp = sf::Vector2f(pair->object_rigidbody_b->game_object->transform->getPosition());
+	temp += inv_mass_b * correction;
+	pair->object_rigidbody_b->game_object->transform->setPosition(temp);
+}
+
+void PhysicsEngine::update_phyisics(float delta_time)
+{
+	update_gameobjects_phyisics(delta_time);
+	check_collisions();
+	resolve_collisons();
+	collision_list.clear();
 }

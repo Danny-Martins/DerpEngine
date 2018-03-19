@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Components">
       <UniqueIdentifier>{57a5a71f-982c-4b8c-8bb4-3b8057db0d94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Wigi">
+      <UniqueIdentifier>{5475f8d1-6bb1-4bea-907f-6b2e90bb5877}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -39,14 +42,23 @@
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Wigi.cpp">
+      <Filter>Resource Files\Wigi</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="InputHandeler.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
     <ClCompile Include="Rigidbody.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Wigi.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="PhyisicsEngine.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,14 +80,23 @@
     <ClInclude Include="GameObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PhyisicsEngine.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Wigi.h">
+      <Filter>Resource Files\Wigi</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderer.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandeler.hpp">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Rigidbody.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="wigi.hpp">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="PhyisicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.hpp">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

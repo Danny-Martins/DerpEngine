@@ -8,9 +8,13 @@
 #include "GameObjectManager.h"
 #include "PhyisicsEngine.h"
 
+class PhysicsEngine;
+
 class DerpEngine {
 
 public:
+	static sf::RenderWindow *render_window;
+
 	const bool is_debug_mode;
 	unsigned int mhz;
 
@@ -19,10 +23,9 @@ public:
 	void main_loop();
 
 private:
-	sf::RenderWindow render_window;
-
+	
+	PhysicsEngine physics_engine;
 	GameObjectManager scene_root;
-	//PhyisicsEngine phyisics_engine;
 
 	enum ENGINE_STATE
 	{
@@ -52,5 +55,5 @@ private:
 	void init_graphics();
 	void init_audio();
 
-	//main loop
+	void setup_scene();
 };

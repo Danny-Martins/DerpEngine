@@ -1,8 +1,10 @@
 #pragma once
 
-class Component
-{
-public:
-	virtual void start() = 0;
-	virtual void update(float delta_time) = 0;
+class GameObject;
+
+class Component{
+	public:
+		GameObject* game_object = nullptr;
+		virtual void start() {};
+		virtual void update(float delta_time) {};
 };

@@ -1,19 +1,23 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "Component.h"
+#include "BoxCollider.hpp"
 
-class PhyisicsEngine;
+class PhysicsEngine;
 
-class Rigidbody {
+class Rigidbody : public Component {
 	public:
-		float mass;
+		float mass = 1.0f;
 		float bounciness;
 
-		bool obeys_gravity;
+		sf::Vector2f linear_dampaning = sf::Vector2f(0.005f, 0.0f);
+
+		bool obeys_gravity = true;
 		bool grounded;
 
-		sf::Vector2f gravity = sf::Vector2f(0.0f, -9.8f);
-		sf::Vector2f max_velocity = sf::Vector2f(10.0f, 10.0f);
+		//const sf::Vector2f gravity = sf::Vector2f(0.0f, 0.0f);
+		const sf::Vector2f gravity = sf::Vector2f(0.0f, 0.00005f);
+		const sf::Vector2f max_velocity = sf::Vector2f(0.05f, 0.05f);
 		sf::Vector2f current_velocity;
 
 		struct AABB
@@ -27,16 +31,17 @@ class Rigidbody {
 	public:
 		Rigidbody();
 		void add_force(sf::Vector2f force);
-		void stop();
+		void stop(bool x, bool y);
 		bool is_grounded();
-		void update(float delta_time);
-		void start();
+		void update(float delta_time) override;
+		void start() override;
 		void update_phyisics(float delta_time);
+		void set_aabb();
 
 	private:
 		sf::Vector2f total_forces;
-		PhyisicsEngine *engine;
+		PhysicsEngine *engine;
+		BoxCollider *box_collider;
 
 	private:
-		void set_aabb();
 };

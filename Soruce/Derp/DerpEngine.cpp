@@ -20,14 +20,20 @@
 
 #include "GameObject.h"
 
-DerpEngine::DerpEngine() : is_debug_mode(true), scene_root() {
+//game play gameobjects
+#include "Wigi.h"
+#include "Rigidbody.h"
+#include "SpriteRenderer.h"
 
+
+sf::RenderWindow* DerpEngine::render_window;
+
+DerpEngine::DerpEngine() : is_debug_mode(true), scene_root(), physics_engine(){
 	std::cout << "starting app \n";
-
 	engine_current_state = Uninitialized;
-
 	std::thread hardware_check_thread(&DerpEngine::check_hardware, this);
 
+	this->render_window = new sf::RenderWindow();
 	this->init_graphics();
 	this->display_splash_screen();
 
@@ -54,14 +60,6 @@ void DerpEngine::check_hardware() {
 
 
 unsigned int DerpEngine::check_enough_disk_space() {
-	// int const drive = _getdrive();
-	// struct _diskfree_t diskfree;  
-	// _getdiskfree(drive, &diskfree);  
-	// unsigned __int64 const needed_clusters = disk_bytes_needed /
-	// (diskfree.sectors_per_cluster*diskfree.bytes_per_sector);  
-
-	// return diskfree.avail_clusters*diskfree.bytes_per_sector;
-
 	const DWORDLONG disk_bytes_needed = 300000000;
 
 	int const drive = _getdrive();
@@ -144,16 +142,16 @@ void DerpEngine::check_joypads() {
 }
 
 void DerpEngine::init_graphics() {
-	this->render_window.create({ 800, 600 }, "Derp Engine");
+	this->render_window->create({ 1280, 720 }, "Derp Engine");
 }
 
 void DerpEngine::display_splash_screen(){
 
 	sf::Texture image;
 
-	if (!image.loadFromFile("..\\..\\Assets\\SplashScreen.jpg"))
+	if (!image.loadFromFile("..\\Assets\\SplashScreen.jpg"))
 	{
-		std::cout << "error 409" << std::endl;
+		std::cout << "Error could not load splash screen image" << std::endl;
 		return;
 	}
 
@@ -161,29 +159,72 @@ void DerpEngine::display_splash_screen(){
 
 	while (engine_current_state != Initialized)
 	{
-		render_window.clear();
-		render_window.draw(sprite);
-		this->render_window.display();
+		render_window->clear();
+		render_window->draw(sprite);
+		this->render_window->display();
 	}
+}
+
+void DerpEngine::setup_scene() {
+
+	Wigi* wigi = new Wigi();
+	
+	GameObject* uganda = new GameObject("Uganda", nullptr);
+	SpriteRenderer* sprite_renderer = new SpriteRenderer();
+	sprite_renderer->set_sprite("..\\Assets\\Uganda.png");
+	uganda->add_component(sprite_renderer);
+
+	BoxCollider *box_collider = new BoxCollider(sprite_renderer->get_sprite().getGlobalBounds().width * 0.5f,
+		sprite_renderer->get_sprite().getGlobalBounds().height * 0.5f);
+	uganda->add_component(box_collider);
+
+	Rigidbody* rigidbody = new Rigidbody();
+	rigidbody->mass = 0.0f;
+	rigidbody->bounciness = 0.6f;
+	uganda->add_component(rigidbody);
+	uganda->transform->setPosition(375.0f, 600.0f);
+
+	GameObject* uganda2 = new GameObject("Uganda2", nullptr);
+	SpriteRenderer* sprite_renderer2 = new SpriteRenderer();
+	sprite_renderer2->set_sprite("..\\Assets\\Uganda.png");
+	uganda2->add_component(sprite_renderer2);
+
+	BoxCollider *box_collider2 = new BoxCollider(sprite_renderer2->get_sprite().getGlobalBounds().width * 0.5f,
+		sprite_renderer2->get_sprite().getGlobalBounds().height * 0.5f);
+	uganda2->add_component(box_collider2);
+
+	Rigidbody* rigidbody2 = new Rigidbody();
+	rigidbody2->mass = 5.0f;
+	rigidbody2->bounciness = 0.6f;
+	uganda2->add_component(rigidbody2);
+	uganda2->transform->setPosition(375.0f, 100.0f);
+
+
+	//std::cout << std::endl << uganda->parent->name << std::endl;
 }
 
 void DerpEngine::main_loop() {
 
-	this->scene_root.start();
+	this->setup_scene();
+	//this->scene_root.start();
 
-	while (this->render_window.isOpen())
+	sf::Clock delta_time_clock;
+
+	while (this->render_window->isOpen())
 	{
+		
 		sf::Event event;
 
-		while (this->render_window.pollEvent(event))
+		while (this->render_window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				this->render_window.close();
+				this->render_window->close();
 		}
 
-		this->scene_root.update(0.0f);
-
-		this->render_window.clear();
-		this->render_window.display();
+		float delta_time = (float)delta_time_clock.restart().asMilliseconds();
+		this->render_window->clear();
+		this->physics_engine.update_phyisics(delta_time);
+		this->scene_root.update(delta_time);
+		this->render_window->display();
 	}
 }
