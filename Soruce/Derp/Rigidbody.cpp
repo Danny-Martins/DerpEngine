@@ -25,14 +25,14 @@ void Rigidbody::set_aabb(){
 	}
 }
 
-void Rigidbody::stop(bool x, bool y) {
+void Rigidbody::stop(bool stop_x_axis, bool stop_y_axis) {
 
-	if (x)
+	if (stop_x_axis)
 	{
 		current_velocity.x = 0.0f;
 		total_forces.x = 0.0f;
 	}
-	if (y)
+	if (stop_y_axis)
 	{
 		current_velocity.y = 0.0f;
 		total_forces.y = 0.0f;
@@ -68,8 +68,16 @@ void Rigidbody::update_phyisics(float delta_time) {
 
 		current_velocity += accleration * delta_time;
 
-		current_velocity.x = std::min(current_velocity.x, max_velocity.x);
-		current_velocity.y = std::min(current_velocity.y, max_velocity.y);
+		//Handle max velocity
+		if (current_velocity.x > 0)
+			current_velocity.x = std::min(current_velocity.x, max_velocity.x);
+		else if (current_velocity.x < 0)
+			current_velocity.x = std::max(current_velocity.x, -max_velocity.x);
+
+		if(current_velocity.y > 0)
+			current_velocity.y = std::min(current_velocity.y, max_velocity.y);
+		else if (current_velocity.y < 0)
+			current_velocity.y = std::max(current_velocity.y, -max_velocity.y);
 
 		//std::cout << "X: " << current_velocity.x << "Y: " << current_velocity.y << std::endl;
 

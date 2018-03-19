@@ -10,14 +10,14 @@ class Rigidbody : public Component {
 		float mass = 1.0f;
 		float bounciness;
 
-		sf::Vector2f linear_dampaning = sf::Vector2f(0.005f, 0.0f);
+		sf::Vector2f linear_dampaning = sf::Vector2f(0.008f, 0.0f);
 
 		bool obeys_gravity = true;
 		bool grounded;
 
 		//const sf::Vector2f gravity = sf::Vector2f(0.0f, 0.0f);
-		const sf::Vector2f gravity = sf::Vector2f(0.0f, 0.00005f);
-		const sf::Vector2f max_velocity = sf::Vector2f(0.05f, 0.05f);
+		sf::Vector2f gravity = sf::Vector2f(0.0f, 0.00005f);
+		const sf::Vector2f max_velocity = sf::Vector2f(0.5f, 0.05f);
 		sf::Vector2f current_velocity;
 
 		struct AABB
@@ -31,7 +31,7 @@ class Rigidbody : public Component {
 	public:
 		Rigidbody();
 		void add_force(sf::Vector2f force);
-		void stop(bool x, bool y);
+		void stop(bool stop_x_axis, bool stop_y_axis);
 		bool is_grounded();
 		void update(float delta_time) override;
 		void start() override;

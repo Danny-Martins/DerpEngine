@@ -30,8 +30,6 @@ class PhysicsEngine {
 		bool is_grounded(Rigidbody* object_rigidbody);
 		PhysicsEngine();
 		void update_phyisics(float delta_time);
-		CollisionPair *pair = new CollisionPair();
-		CollisionInfo *info = new CollisionInfo();
 
 	private:
 		std::map<CollisionPair*, CollisionInfo*> collision_list;

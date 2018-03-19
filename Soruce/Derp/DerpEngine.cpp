@@ -196,6 +196,8 @@ void DerpEngine::setup_scene() {
 	Rigidbody* rigidbody2 = new Rigidbody();
 	rigidbody2->mass = 5.0f;
 	rigidbody2->bounciness = 0.6f;
+	//rigidbody2->gravity.x = 0.0001f;
+	//rigidbody2->gravity.y = 0.0f;
 	uganda2->add_component(rigidbody2);
 	uganda2->transform->setPosition(375.0f, 100.0f);
 

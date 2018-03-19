@@ -15,6 +15,8 @@ Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(1) {
 
 	rigidbody = new Rigidbody();
 	rigidbody->mass = 1.0f;
+	//rigidbody->gravity.x = -0.0001f;
+	//rigidbody->gravity.y = 0.0f;
 	rigidbody->bounciness = 0.5f;
 	this->add_component(rigidbody);
 	
@@ -70,11 +72,15 @@ void Wigi::update(float delta_time) {
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		this->rigidbody->add_force(sf::Vector2f(0.02, 0));
+		this->rigidbody->add_force(sf::Vector2f(0.0006, 0));
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		this->rigidbody->add_force(sf::Vector2f(-0.02, 0));
+		this->rigidbody->add_force(sf::Vector2f(-0.0006, 0));
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)) {
+		this->rigidbody->stop(true, true);
 	}
 
 	/*

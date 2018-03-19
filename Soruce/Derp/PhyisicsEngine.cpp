@@ -157,7 +157,7 @@ void PhysicsEngine::resolve_collisons()
 		float min_bounce = std::min(it->first->object_rigidbody_a->bounciness, it->first->object_rigidbody_b->bounciness);
 
 		sf::Vector2f temp = it->first->object_rigidbody_b->current_velocity - it->first->object_rigidbody_a->current_velocity;
-		float vel_along_normal = (temp.x * it->second->collisonNormal.y) + (temp.y * it->second->collisonNormal.y);
+		float vel_along_normal = (temp.x * it->second->collisonNormal.x) + (temp.y * it->second->collisonNormal.y);
 
 		if (vel_along_normal > 0)
 			continue;
