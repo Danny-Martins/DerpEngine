@@ -83,7 +83,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\Libs\SFML\static-std;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;sfml-audio-s-d.lib;freetype.lib;jpeg.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;opengl32.lib;openal32.lib;winmm.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -96,7 +96,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)..\Libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;sfml-audio-s.lib;freetype.lib;jpeg.lib;opengl32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -127,13 +127,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DerpEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="InputHandeler.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MusicComponent.cpp" />
     <ClCompile Include="PhyisicsEngine.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="SoundComponent.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector.cpp" />
@@ -142,12 +145,15 @@
   <ItemGroup>
     <ClInclude Include="BoxCollider.hpp" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="Debug.hpp" />
     <ClInclude Include="DerpEngine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="InputHandeler.hpp" />
+    <ClInclude Include="MusicComponent.hpp" />
     <ClInclude Include="PhyisicsEngine.h" />
     <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="SoundComponent.hpp" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector.h" />

@@ -12,9 +12,8 @@
 #include <WinBase.h>
 #include <direct.h>
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 
 #include "DerpEngine.h"
 
@@ -24,6 +23,7 @@
 #include "Wigi.h"
 #include "Rigidbody.h"
 #include "SpriteRenderer.h"
+#include "Debug.hpp"
 
 sf::RenderWindow* DerpEngine::render_window;
 
@@ -35,14 +35,11 @@ DerpEngine::DerpEngine() : is_debug_mode(true), scene_root(), physics_engine(){
 
 	std::thread hardware_check_thread(&DerpEngine::check_hardware, this);
 
-
 	this->render_window = new sf::RenderWindow();
 	this->init_graphics();
 	this->display_splash_screen();
 
 	hardware_check_thread.join();
-
-	//this->main_loop();
 }
 
 void DerpEngine::check_hardware() {
@@ -171,6 +168,13 @@ void DerpEngine::display_splash_screen(){
 void DerpEngine::setup_scene() {
 
 	Wigi* wigi = new Wigi();
+
+	//Debug::print("help me");
+
+	//sf::Music* background_music = new sf::Music();
+	//background_music->openFromFile("..\\Assets\\Audio\\BGM\\Daybreak.wav");
+	//background_music->play();
+
 	/*
 	GameObject* uganda = new GameObject("Uganda", nullptr);
 	SpriteRenderer* sprite_renderer = new SpriteRenderer();

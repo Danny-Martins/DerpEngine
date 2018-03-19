@@ -5,10 +5,11 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <thread>
+
 #include "GameObjectManager.h"
 #include "PhyisicsEngine.h"
 
-class PhysicsEngine;
+//class PhysicsEngine;
 
 class DerpEngine {
 
@@ -26,6 +27,7 @@ private:
 	
 	PhysicsEngine physics_engine;
 	GameObjectManager scene_root;
+	//sf::Music background_music;
 
 	enum ENGINE_STATE
 	{

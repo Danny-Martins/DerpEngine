@@ -3,13 +3,16 @@
 #include "Wigi.h"
 #include "Rigidbody.h"
 #include "SpriteRenderer.h"
+#include "MusicComponent.hpp"
+
+#include "Debug.hpp"
 
 Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(1) {
 
 	SpriteRenderer* sprite_renderer = new SpriteRenderer();
 	sprite_renderer->set_sprite("..\\Assets\\Wigi.png");
 	this->add_component(sprite_renderer);
-	
+
 	//this->transform->setScale(sf::Vector2f(0.25f, 0.25f));
 	this->transform->setPosition(375.0f, 50.0f);
 
@@ -54,6 +57,18 @@ void Wigi::update(float delta_time) {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 		this->transform->scale(sf::Vector2f(1.005f, 1.005f));
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+		Debug::log_error("YA DUN FUCKED UP", true);
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace)) {
+		Debug::clear_log();
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		Debug::print("Words Words Words");
 	}
 
 	/*
