@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "GameObject.h"
+#include "Rigidbody.h"
 
 //typedef void key_function();
 
@@ -16,5 +17,6 @@ class Wigi : public GameObject {
 		virtual void update(float delta_time) override;
 
 	private:
+		Rigidbody* rigid_body;
 		float move_speed;
 };

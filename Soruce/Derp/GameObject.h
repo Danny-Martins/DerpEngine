@@ -8,6 +8,7 @@ class GameObject {
 		//static GameObject& find(std::string object_name);
 
 		GameObject(std::string name, GameObject* parent);
+		~GameObject();
 
 		void add_child(GameObject* child);
 		void set_parent(GameObject* parent);

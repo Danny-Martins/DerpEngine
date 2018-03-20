@@ -18,23 +18,22 @@ GameObject::GameObject(std::string name, GameObject* parent){
 	//if parent is null add to game object manager
 }
 
+GameObject::~GameObject() {
+	if (this->children.size() != 0) {
+		for (std::vector<GameObject*>::iterator itorator = this->children.begin(); itorator != this->children.end(); itorator++) {
+			delete (*itorator);
+		}
+	}
+	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
+		delete (*itorator);
+	}
+}
+
 void GameObject::add_component(Component* component) {
 	component->game_object = this;
 	component->start();
 	this->components.push_back(component);
 }
-
-/*
-template <typename component>
-component* GameObject::get_component() {
-	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
-		if (dynamic_cast<component*> ((*itorator)) != NULL) {
-			std::cout << "it worked!" << std::endl;
-		}
-	}
-	return nullptr;
-}
-*/
 
 void GameObject::add_child(GameObject* child) {
 	std::cout << "Added " << child->name << " as a child of " << this->name;
@@ -71,6 +70,5 @@ sf::Transform GameObject::get_world_transform() {
 		return this->transform->getTransform();
 
 	return this->transform->getTransform() * this->parent->transform->getTransform();
-	
 }
 

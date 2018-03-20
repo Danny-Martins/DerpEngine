@@ -7,6 +7,16 @@ GameObjectManager::GameObjectManager() {
 	GameObjectManager::instance = this;
 }
 
+GameObjectManager::~GameObjectManager() {
+	this->shutdown();
+}
+
+void GameObjectManager::shutdown() {
+	for (std::vector<GameObject*>::iterator itorator = this->scene_graph.begin(); itorator != this->scene_graph.end(); itorator++) {
+		delete (*itorator);
+	}
+}
+
 void GameObjectManager::add_to_graph(GameObject* gameobject) {
 	this->scene_graph.push_back(gameobject);
 	std::cout << "Added " << gameobject->name << " to scene root" << std::endl;

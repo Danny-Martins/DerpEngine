@@ -142,7 +142,7 @@ void DerpEngine::check_joypads() {
 }
 
 void DerpEngine::init_graphics() {
-	this->render_window->create({ 800, 600 }, "Derp Engine");
+	this->render_window->create({ 1280, 720 }, "Derp Engine");
 }
 
 void DerpEngine::display_splash_screen(){
@@ -167,25 +167,43 @@ void DerpEngine::display_splash_screen(){
 
 void DerpEngine::setup_scene() {
 
-	Wigi* wigi = new Wigi();
+	Debug::clear_log();
+	
+	GameObject* background = new GameObject("Background", nullptr);
+	SpriteRenderer* background_sprite = new SpriteRenderer();
+	background_sprite->set_sprite("..\\Assets\\Sprites\\test background.jpg");
+	background->add_component(background_sprite);
+	background->transform->setPosition(sf::Vector2f(1280/2, 720/2));
+	
+	GameObject* box = new GameObject("Ground", nullptr);
+	SpriteRenderer* box_sprite = new SpriteRenderer();
+	box_sprite->set_sprite("..\\Assets\\Sprites\\Box.png");
+	box->add_component(box_sprite);
 
-	//Debug::print("help me");
+	BoxCollider* box_collider = new BoxCollider(128.0f, 128.0f);
+	box->add_component(box_collider);
+	
+	Rigidbody* box_rigid = new Rigidbody();
+	box_rigid->mass = 0.0f;
+	box_rigid->bounciness = 0.5f;
+	box->add_component(box_rigid);
+
+	box->transform->setPosition(sf::Vector2f(250.0f, 600.0f));
+
+	Wigi* wigi = new Wigi();
 
 	//sf::Music* background_music = new sf::Music();
 	//background_music->openFromFile("..\\Assets\\Audio\\BGM\\Daybreak.wav");
 	//background_music->play();
 
-	/*
-	GameObject* uganda = new GameObject("Uganda", nullptr);
-	SpriteRenderer* sprite_renderer = new SpriteRenderer();
-	sprite_renderer->set_sprite("..\\Assets\\Uganda.png");
-	uganda->half_width = sprite_renderer->get_sprite().getGlobalBounds().width / 2;
-	uganda->half_height = sprite_renderer->get_sprite().getGlobalBounds().height / 2;
-	uganda->add_component(sprite_renderer);
+	
+	//GameObject* uganda = new GameObject("Uganda", wigi);
+	//SpriteRenderer* sprite_renderer = new SpriteRenderer();
+	//sprite_renderer->set_sprite("..\\Assets\\Uganda.png");
+	//uganda->add_component(sprite_renderer);
 	//Rigidbody* rigidbody = new Rigidbody();
 	//uganda->add_component(rigidbody);
-	uganda->transform->setPosition(375.0f, 400.0f);
-	*/
+	//uganda->transform->setPosition(375.0f, 400.0f);
 
 	//std::cout << std::endl << uganda->parent->name << std::endl;
 }
@@ -193,13 +211,12 @@ void DerpEngine::setup_scene() {
 void DerpEngine::main_loop() {
 
 	this->setup_scene();
-	this->scene_root.start();
+	//this->scene_root.start();
 
 	sf::Clock delta_time_clock;
 
 	while (this->render_window->isOpen())
 	{
-		
 		sf::Event event;
 
 		while (this->render_window->pollEvent(event))
@@ -209,9 +226,14 @@ void DerpEngine::main_loop() {
 		}
 
 		float delta_time = (float)delta_time_clock.restart().asMilliseconds();
+
 		this->render_window->clear();
 		this->physics_engine.update_phyisics(delta_time);
 		this->scene_root.update(delta_time);
 		this->render_window->display();
 	}
+}
+
+void DerpEngine::shutdown() {
+	delete GameObjectManager::instance;
 }

@@ -8,7 +8,6 @@ void InputHandler::start() {
 }
 
 void InputHandler::update(float delta_time) {
-	std::cout << "help me" << std::endl;
 	for (key_binding::iterator itorator = this->key_bindings.begin(); itorator != this->key_bindings.end(); itorator++) {
 		if (sf::Keyboard::isKeyPressed(itorator->first)) {
 			itorator->second();

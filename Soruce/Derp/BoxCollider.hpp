@@ -18,4 +18,8 @@ class BoxCollider : public Component {
 
 		float half_width;
 		float half_height;
+
+	private:
+		bool draw_bounding_box;
+		sf::RectangleShape bounding_box;
 };

@@ -1,13 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   DerpEngine.cpp
 c:\users\user\desktop\derp engine\derpengine\soruce\derp\debug.hpp(12): warning C4091: 'static ': ignored on left of 'Debug' when no variable is declared
-  Debug.cpp
-c:\users\user\desktop\derp engine\derpengine\soruce\derp\debug.hpp(12): warning C4091: 'static ': ignored on left of 'Debug' when no variable is declared
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Rigidbody.cpp
-  PhyisicsEngine.cpp
-  SpriteRenderer.cpp
-  Main.cpp
   Derp.vcxproj -> C:\Users\User\Desktop\Derp Engine\DerpEngine\Soruce\..\Game\Derp.exe
   Derp.vcxproj -> C:\Users\User\Desktop\Derp Engine\DerpEngine\Soruce\..\Game\Derp.pdb (Partial PDB)

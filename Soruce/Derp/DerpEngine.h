@@ -22,6 +22,7 @@ public:
 public:
 	DerpEngine();
 	void main_loop();
+	void shutdown();
 
 private:
 	
@@ -55,7 +56,5 @@ private:
 
 	//init 
 	void init_graphics();
-	void init_audio();
-
 	void setup_scene();
 };
