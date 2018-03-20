@@ -83,13 +83,22 @@ void Wigi::update(float delta_time) {
 		this->transform->scale(sf::Vector2f(1.005f, 1.005f));
 	}
 
-	/*
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P)) {
-		for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
-			if (dynamic_cast<Rigidbody*> ((*itorator)) != NULL) {
-				std::cout << "it worked!" << std::endl;
-			}
-		}
+	sf::Vector2f derp = (*this->children.begin())->transform->getPosition();
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		derp.x += this->move_speed * 100.0f;
+		
 	}
-	*/
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		derp.x -= this->move_speed  * 100.0f;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		derp.y -= this->move_speed * 100.0f;
+
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		derp.y += this->move_speed  * 100.0f;
+	}
+
+	(*this->children.begin())->transform->setPosition(derp);
 }

@@ -175,32 +175,70 @@ void DerpEngine::setup_scene() {
 	background->add_component(background_sprite);
 	background->transform->setPosition(sf::Vector2f(1280/2, 720/2));
 	
+	GameObject* floor = new GameObject("Floor", nullptr);
+	floor->add_component(new BoxCollider(1280 / 2, 40));
+	floor->transform->setPosition(1280 / 2, 750.0f);
+	Rigidbody* floor_rigidbody = new Rigidbody();
+	floor_rigidbody->mass = 0.0f;
+	floor_rigidbody->bounciness = 0.5f;
+	floor->add_component(floor_rigidbody);
+
 	GameObject* box = new GameObject("Ground", nullptr);
 	SpriteRenderer* box_sprite = new SpriteRenderer();
 	box_sprite->set_sprite("..\\Assets\\Sprites\\Box.png");
 	box->add_component(box_sprite);
+	box->transform->setScale(0.5f, 0.5f);
 
-	BoxCollider* box_collider = new BoxCollider(128.0f, 128.0f);
+	BoxCollider* box_collider = new BoxCollider(64.0f, 64.0f);
 	box->add_component(box_collider);
 	
 	Rigidbody* box_rigid = new Rigidbody();
-	box_rigid->mass = 0.0f;
+	box_rigid->mass = 0.5f;
 	box_rigid->bounciness = 0.5f;
 	box->add_component(box_rigid);
 
-	box->transform->setPosition(sf::Vector2f(250.0f, 600.0f));
+	box->transform->setPosition(sf::Vector2f(250.0f, 570.0f));
 
 	Wigi* wigi = new Wigi();
-
-	//sf::Music* background_music = new sf::Music();
-	//background_music->openFromFile("..\\Assets\\Audio\\BGM\\Daybreak.wav");
-	//background_music->play();
-
 	
-	//GameObject* uganda = new GameObject("Uganda", wigi);
-	//SpriteRenderer* sprite_renderer = new SpriteRenderer();
-	//sprite_renderer->set_sprite("..\\Assets\\Uganda.png");
-	//uganda->add_component(sprite_renderer);
+	GameObject* uganda = new GameObject("Uganda", wigi);
+	SpriteRenderer* sprite_renderer = new SpriteRenderer();
+	sprite_renderer->set_sprite("..\\Assets\\Sprites\\Uganda.png");
+	uganda->add_component(sprite_renderer);
+
+	GameObject* box2 = new GameObject("Ground", nullptr);
+	SpriteRenderer* box_sprite2 = new SpriteRenderer();
+	box_sprite2->set_sprite("..\\Assets\\Sprites\\Box.png");
+	box2->add_component(box_sprite2);
+	box2->transform->setScale(0.5f, 0.5f);
+
+	BoxCollider* box_collider2 = new BoxCollider(64.0f, 64.0f);
+	box2->add_component(box_collider2);
+
+	Rigidbody* box_rigid2 = new Rigidbody();
+	box_rigid2->mass = 0.5f;
+	box_rigid2->bounciness = 0.5f;
+	box2->add_component(box_rigid2);
+
+	box2->transform->setPosition(sf::Vector2f(950.0f, 570.0f));
+
+	GameObject* box3 = new GameObject("Ground", nullptr);
+	SpriteRenderer* box_sprite3 = new SpriteRenderer();
+	box_sprite3->set_sprite("..\\Assets\\Sprites\\Box.png");
+	box3->add_component(box_sprite3);
+	box3->transform->setScale(0.5f, 0.5f);
+
+	BoxCollider* box_collider3 = new BoxCollider(64.0f, 64.0f);
+	box3->add_component(box_collider3);
+
+	Rigidbody* box_rigid3 = new Rigidbody();
+	box_rigid3->mass = 0.5f;
+	box_rigid3->bounciness = 0.5f;
+	box3->add_component(box_rigid3);
+
+	box3->transform->setPosition(sf::Vector2f(900.0f, 275.0f));
+
+	//uganda->transform->setPosition(wigi->transform->getPosition().x, 0.0f);
 	//Rigidbody* rigidbody = new Rigidbody();
 	//uganda->add_component(rigidbody);
 	//uganda->transform->setPosition(375.0f, 400.0f);
