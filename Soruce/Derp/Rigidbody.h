@@ -20,8 +20,8 @@ public:
 	bool grounded;
 
 	//const sf::Vector2f gravity = sf::Vector2f(0.0f, 0.0f);
-	sf::Vector2f gravity = sf::Vector2f(0.0f, 0.00016f);
-	const sf::Vector2f max_velocity = sf::Vector2f(0.25f, 0.25f);
+	sf::Vector2f gravity = sf::Vector2f(0.0f, 0.00032f);
+	const sf::Vector2f max_velocity = sf::Vector2f(0.5f, 0.5f);
 	sf::Vector2f current_velocity;
 
 	struct AABB

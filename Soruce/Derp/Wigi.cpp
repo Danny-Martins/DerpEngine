@@ -1,12 +1,10 @@
 #include "Wigi.h"
 #include "SpriteRenderer.h"
-#include "MusicComponent.hpp"
+#include "SoundComponent.hpp"
 #include "InputHandeler.hpp"
 #include "BoxCollider.hpp"
 
 #include "Debug.hpp"
-
-void derp();
 
 Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(0.0025f) {
 
@@ -28,18 +26,19 @@ Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(0.0025f) {
 	this->rigid_body->bounciness = 0.5f;
 	this->add_component(this->rigid_body);
 
+	SoundComponent* sound_component = new SoundComponent();
+	sound_component->load_sound("..\\Assets\\Audio\\BGM\\scream.ogg");
+	this->add_component(sound_component);
+
 	//this->components.erase(components.begin()+1);
 	//delete this->get_component<SpriteRenderer>();
+	
 
 	/*
 	InputHandler* input_handler = new InputHandler();
-	input_handler->add_binding(sf::Keyboard::A, derp);
+	input_handler->add_binding(sf::Keyboard::A, someclass::somefunc);
 	this->add_component(input_handler);
 	*/
-}
-
-void derp() {
-	
 }
 
 void Wigi::thrust() {
@@ -84,6 +83,11 @@ void Wigi::update(float delta_time) {
 	}
 
 	sf::Vector2f derp = (*this->children.begin())->transform->getPosition();
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		this->get_component<SoundComponent>()->play();
+		this->get_component<Rigidbody>()->add_force(sf::Vector2f(0.0f, -0.09f));
+	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 		derp.x += this->move_speed * 100.0f;

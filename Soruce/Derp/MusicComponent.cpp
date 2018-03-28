@@ -1,6 +1,8 @@
 #include "MusicComponent.hpp"
 
-MusicComponent::MusicComponent() : music_object(), is_paused(false), is_playing(false) {}
+MusicComponent::MusicComponent() : music_object(), is_paused(false), is_playing(false) {
+	this->music_object.setLoop(true);
+}
 
 void MusicComponent::load_music(std::string path) {
 	this->music_object.openFromFile(path);

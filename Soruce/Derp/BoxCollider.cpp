@@ -35,6 +35,4 @@ void BoxCollider::update(float delta_time) {
 		bounding_box.setPosition(this->game_object->transform->getPosition());
 		DerpEngine::render_window->draw(this->bounding_box);
 	}
-		
-	
 }

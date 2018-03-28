@@ -22,6 +22,7 @@
 //game play gameobjects
 #include "Wigi.h"
 #include "Rigidbody.h"
+#include "MusicComponent.hpp"
 #include "SpriteRenderer.h"
 #include "Debug.hpp"
 
@@ -174,6 +175,9 @@ void DerpEngine::setup_scene() {
 	background_sprite->set_sprite("..\\Assets\\Sprites\\test background.jpg");
 	background->add_component(background_sprite);
 	background->transform->setPosition(sf::Vector2f(1280/2, 720/2));
+	MusicComponent* background_music = new MusicComponent();
+	background_music->load_music("..\\Assets\\Audio\\BGM\\Daybreak.wav");
+	background_music->play(false);
 	
 	GameObject* floor = new GameObject("Floor", nullptr);
 	floor->add_component(new BoxCollider(1280 / 2, 40));
