@@ -19,7 +19,7 @@ void SpriteRenderer::set_sprite(std::string image_path) {
 	this->sprite.setTexture(this->sprite_texture);
 }
 
-//returns a copy of the sprite
+//returns a copy of the sprite mainly used for creating another sprite
 sf::Sprite SpriteRenderer::get_sprite() {
 	return this->sprite;
 }

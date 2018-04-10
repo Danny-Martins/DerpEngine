@@ -18,5 +18,4 @@ void InputHandler::update(float delta_time) {
 void InputHandler::add_binding(sf::Keyboard::Key key, key_function function_address) {
 
 	this->key_bindings.insert(std::pair<sf::Keyboard::Key, key_function*>(key, function_address));
-
 }

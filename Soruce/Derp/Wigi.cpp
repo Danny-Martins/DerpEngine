@@ -3,8 +3,14 @@
 #include "SoundComponent.hpp"
 #include "InputHandeler.hpp"
 #include "BoxCollider.hpp"
+#include "TextRenderer.h"
+#include "Button.hpp"
 
 #include "Debug.hpp"
+
+void derp() {
+	Debug::print("in derp");
+}
 
 Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(0.0025f) {
 
@@ -30,15 +36,17 @@ Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(0.0025f) {
 	sound_component->load_sound("..\\Assets\\Audio\\BGM\\scream.ogg");
 	this->add_component(sound_component);
 
-	//this->components.erase(components.begin()+1);
-	//delete this->get_component<SpriteRenderer>();
-	
+	Button* button = new Button();
+	this->add_component(button);
 
 	/*
-	InputHandler* input_handler = new InputHandler();
-	input_handler->add_binding(sf::Keyboard::A, someclass::somefunc);
-	this->add_component(input_handler);
+	TextRenderer* text_renderer = new TextRenderer();
+	text_renderer->set_string("At least its not unreal");
+	this->add_component(text_renderer);
 	*/
+
+
+	this->setup_input();
 }
 
 void Wigi::thrust() {

@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DerpEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -138,12 +139,14 @@
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SoundComponent.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Wigi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxCollider.hpp" />
+    <ClInclude Include="Button.hpp" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Debug.hpp" />
     <ClInclude Include="DerpEngine.h" />
@@ -155,6 +158,7 @@
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="SoundComponent.hpp" />
     <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Wigi.h" />

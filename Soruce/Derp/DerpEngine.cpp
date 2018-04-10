@@ -209,6 +209,7 @@ void DerpEngine::setup_scene() {
 	SpriteRenderer* sprite_renderer = new SpriteRenderer();
 	sprite_renderer->set_sprite("..\\Assets\\Sprites\\Uganda.png");
 	uganda->add_component(sprite_renderer);
+	
 
 	GameObject* box2 = new GameObject("Ground", nullptr);
 	SpriteRenderer* box_sprite2 = new SpriteRenderer();

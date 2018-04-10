@@ -4,10 +4,10 @@
 
 #include "Component.h"
 
-typedef void key_function();
-typedef std::map<sf::Keyboard::Key, key_function*> key_binding;
-
 class InputHandler : public Component {
+
+	typedef void key_function();
+	typedef std::map<sf::Keyboard::Key, key_function*> key_binding;
 
 	public:
 		InputHandler();
