@@ -22,6 +22,15 @@
     <Filter Include="Resource Files\Wigi">
       <UniqueIdentifier>{5475f8d1-6bb1-4bea-907f-6b2e90bb5877}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Lander">
+      <UniqueIdentifier>{4dfb34bd-6179-41c3-9a00-62c1bd8c98d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Background">
+      <UniqueIdentifier>{942c4815-72ff-46bd-9ea0-8e44d353f9a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Player GUI">
+      <UniqueIdentifier>{1522ce5e-b0e9-4dd8-a2da-228f1ddcba1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -75,6 +84,15 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Lander.cpp">
+      <Filter>Resource Files\Lander</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Resource Files\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGUI.cpp">
+      <Filter>Resource Files\Player GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DerpEngine.h">
@@ -127,6 +145,15 @@
     </ClInclude>
     <ClInclude Include="Button.hpp">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Lander.hpp">
+      <Filter>Resource Files\Lander</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.hpp">
+      <Filter>Resource Files\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerGUI.hpp">
+      <Filter>Resource Files\Player GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

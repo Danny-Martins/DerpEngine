@@ -1,0 +1,12 @@
+<Gameobject name="lander">
+    <Transform>
+        <Position x="5" y="69" />
+    </Transform>
+    <Rigidbody>
+    	<float name="mass">5</float>
+    </Rigidbody>
+    <SpriteRenderer>
+    	<string name="path">windows/system32</string> 
+    </SpriteRenderer>
+</Gameobject>
+<?xml version="1.0" ?>

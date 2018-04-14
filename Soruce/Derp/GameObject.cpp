@@ -7,12 +7,12 @@ GameObject::GameObject(std::string name, GameObject* parent){
 	this->transform = new Transform();
 	this->add_component(this->transform);
 
-	if (parent == nullptr)
-		GameObjectManager::instance->add_to_graph(this);
-	else {
-		parent->add_child(this);
-		this->set_parent(parent);
-	}
+	//if (parent == nullptr)
+		//GameObjectManager::instance->add_to_graph(this);
+	//else {
+		//parent->add_child(this);
+		//this->set_parent(parent);
+	//}
 		
 	//std::cout << "gameobject constructor" << std::endl;
 	//if parent is null add to game object manager
@@ -31,7 +31,7 @@ GameObject::~GameObject() {
 
 void GameObject::add_component(Component* component) {
 	component->game_object = this;
-	component->start();
+	//component->start();
 	this->components.push_back(component);
 }
 

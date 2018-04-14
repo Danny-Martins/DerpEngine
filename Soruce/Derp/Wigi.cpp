@@ -36,8 +36,8 @@ Wigi::Wigi() : GameObject("Wigi", nullptr),  move_speed(0.0025f) {
 	sound_component->load_sound("..\\Assets\\Audio\\BGM\\scream.ogg");
 	this->add_component(sound_component);
 
-	Button* button = new Button();
-	this->add_component(button);
+	//Button* button = new Button();
+	//this->add_component(button);
 
 	/*
 	TextRenderer* text_renderer = new TextRenderer();

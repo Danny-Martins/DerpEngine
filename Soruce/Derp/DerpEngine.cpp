@@ -166,19 +166,20 @@ void DerpEngine::display_splash_screen(){
 	}
 }
 
+//game objects
+#include "Background.hpp"
+#include "Lander.hpp"
+#include "PlayerGUI.hpp"
+
 void DerpEngine::setup_scene() {
 
 	Debug::clear_log();
 	
-	GameObject* background = new GameObject("Background", nullptr);
-	SpriteRenderer* background_sprite = new SpriteRenderer();
-	background_sprite->set_sprite("..\\Assets\\Sprites\\test background.jpg");
-	background->add_component(background_sprite);
-	background->transform->setPosition(sf::Vector2f(1280/2, 720/2));
-	MusicComponent* background_music = new MusicComponent();
-	background_music->load_music("..\\Assets\\Audio\\BGM\\Daybreak.wav");
-	background_music->play(false);
-	
+	Background *background = new Background();
+	PlayerGUI *player_gui = new PlayerGUI();
+	Lander *player = new Lander();
+
+	/*
 	GameObject* floor = new GameObject("Floor", nullptr);
 	floor->add_component(new BoxCollider(1280 / 2, 40));
 	floor->transform->setPosition(1280 / 2, 750.0f);
@@ -203,52 +204,7 @@ void DerpEngine::setup_scene() {
 
 	box->transform->setPosition(sf::Vector2f(250.0f, 570.0f));
 
-	Wigi* wigi = new Wigi();
-	
-	GameObject* uganda = new GameObject("Uganda", wigi);
-	SpriteRenderer* sprite_renderer = new SpriteRenderer();
-	sprite_renderer->set_sprite("..\\Assets\\Sprites\\Uganda.png");
-	uganda->add_component(sprite_renderer);
-	
-
-	GameObject* box2 = new GameObject("Ground", nullptr);
-	SpriteRenderer* box_sprite2 = new SpriteRenderer();
-	box_sprite2->set_sprite("..\\Assets\\Sprites\\Box.png");
-	box2->add_component(box_sprite2);
-	box2->transform->setScale(0.5f, 0.5f);
-
-	BoxCollider* box_collider2 = new BoxCollider(64.0f, 64.0f);
-	box2->add_component(box_collider2);
-
-	Rigidbody* box_rigid2 = new Rigidbody();
-	box_rigid2->mass = 0.5f;
-	box_rigid2->bounciness = 0.5f;
-	box2->add_component(box_rigid2);
-
-	box2->transform->setPosition(sf::Vector2f(950.0f, 570.0f));
-
-	GameObject* box3 = new GameObject("Ground", nullptr);
-	SpriteRenderer* box_sprite3 = new SpriteRenderer();
-	box_sprite3->set_sprite("..\\Assets\\Sprites\\Box.png");
-	box3->add_component(box_sprite3);
-	box3->transform->setScale(0.5f, 0.5f);
-
-	BoxCollider* box_collider3 = new BoxCollider(64.0f, 64.0f);
-	box3->add_component(box_collider3);
-
-	Rigidbody* box_rigid3 = new Rigidbody();
-	box_rigid3->mass = 0.5f;
-	box_rigid3->bounciness = 0.5f;
-	box3->add_component(box_rigid3);
-
-	box3->transform->setPosition(sf::Vector2f(900.0f, 275.0f));
-
-	//uganda->transform->setPosition(wigi->transform->getPosition().x, 0.0f);
-	//Rigidbody* rigidbody = new Rigidbody();
-	//uganda->add_component(rigidbody);
-	//uganda->transform->setPosition(375.0f, 400.0f);
-
-	//std::cout << std::endl << uganda->parent->name << std::endl;
+	*/
 }
 
 void DerpEngine::main_loop() {

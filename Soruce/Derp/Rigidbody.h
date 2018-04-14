@@ -2,11 +2,21 @@
 #include <SFML\Graphics.hpp>
 #include "Component.h"
 #include "BoxCollider.hpp"
+#include <TinyXML/tinyxml.h>
+#include "Debug.hpp"
 
 class PhysicsEngine;
 
 class Rigidbody : public Component {
 public:
+
+	static void set_component_from_xml(TiXmlElement* xml_element, GameObject* gameobject) {
+		Rigidbody *rigidbody = new Rigidbody();
+		rigidbody->mass = std::stof(xml_element->FirstChildElement()->GetText());
+		gameobject->add_component(rigidbody);
+		//Debug::print(xml_element->FirstChildElement()->GetText());
+	}
+
 	float mass = 1.0f;
 	float bounciness;
 

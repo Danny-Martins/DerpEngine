@@ -2,7 +2,7 @@
 #include "DerpEngine.h"
 
 TextRenderer::TextRenderer() : text(), font(), offset(0, 0) {
-	this->font.loadFromFile("..\\Assets\\Fonts\\AYearWithoutRain.ttf");
+	this->font.loadFromFile("..\\Assets\\Fonts\\nasalization-rg.ttf");
 	this->text.setFont(this->font);
 
 	this->text.setString("New Text");

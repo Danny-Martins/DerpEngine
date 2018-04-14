@@ -1,5 +1,6 @@
 #include "Button.hpp"
 #include "DerpEngine.h"
+#include "Debug.hpp"
 
 Button::Button() : button_box(), is_mouse_hovered(false){
 	this->button_box.setFillColor(sf::Color::Black);
@@ -17,6 +18,9 @@ void Button::start() {
 
 //add functionality to check if the mouse position is within the bounds of the button
 void Button::update(float delta_time) {
-	//sf::Vector2i mouse_position = sf::Mouse::getPosition();
+	sf::Vector2i mouse_position = sf::Mouse::getPosition();
+	if (mouse_position.x <= (this->button_box.getLocalBounds().left + this->button_box.getLocalBounds().width)) {
+		
+	}
 	DerpEngine::render_window->draw(this->button_box, this->game_object->get_world_transform());
 }
