@@ -28,7 +28,7 @@
 
 sf::RenderWindow* DerpEngine::render_window;
 
-DerpEngine::DerpEngine() : is_debug_mode(true), scene_root(), physics_engine(){
+DerpEngine::DerpEngine() : is_debug_mode(true), current_scene(), physics_engine(){
 
 	std::cout << "starting app \n";
 
@@ -175,9 +175,9 @@ void DerpEngine::setup_scene() {
 
 	Debug::clear_log();
 	
-	Background *background = new Background();
-	PlayerGUI *player_gui = new PlayerGUI();
-	Lander *player = new Lander();
+	//Background *background = new Background();
+	//PlayerGUI *player_gui = new PlayerGUI();
+	//Lander *player = new Lander();
 
 	/*
 	GameObject* floor = new GameObject("Floor", nullptr);
@@ -209,13 +209,11 @@ void DerpEngine::setup_scene() {
 
 void DerpEngine::main_loop() {
 
-	this->setup_scene();
-	//this->scene_root.start();
-
+	this->current_scene.build_scene_from_xml();
+	Scene::scene_root->start();
 	sf::Clock delta_time_clock;
 
-	while (this->render_window->isOpen())
-	{
+	while (this->render_window->isOpen()){
 		sf::Event event;
 
 		while (this->render_window->pollEvent(event))
@@ -228,11 +226,11 @@ void DerpEngine::main_loop() {
 
 		this->render_window->clear();
 		this->physics_engine.update_phyisics(delta_time);
-		this->scene_root.update(delta_time);
+		Scene::scene_root->update(delta_time);
 		this->render_window->display();
 	}
 }
 
 void DerpEngine::shutdown() {
-	delete GameObjectManager::instance;
+	//delete GameObjectManager::instance;
 }

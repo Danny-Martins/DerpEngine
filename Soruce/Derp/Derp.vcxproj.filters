@@ -48,9 +48,6 @@
     <ClCompile Include="Vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Wigi.cpp">
       <Filter>Resource Files\Wigi</Filter>
     </ClCompile>
@@ -93,6 +90,9 @@
     <ClCompile Include="PlayerGUI.cpp">
       <Filter>Resource Files\Player GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DerpEngine.h">
@@ -108,9 +108,6 @@
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Vector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Wigi.h">
@@ -154,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="PlayerGUI.hpp">
       <Filter>Resource Files\Player GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

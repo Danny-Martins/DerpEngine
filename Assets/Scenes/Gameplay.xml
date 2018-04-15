@@ -1,0 +1,13 @@
+<Gameobject name="lander">
+    <Transform>
+        <Position x="650" y="0" />
+    </Transform>
+    <Rigidbody>
+    	<float name="mass">1</float>
+    	<float name="bounciness">0.5</float>
+    </Rigidbody>
+    <SpriteRenderer>
+    	<string name="path">..\\Assets\\Sprites\\Ship.png</string> 
+    </SpriteRenderer>
+</Gameobject>
+<?xml version="1.0" ?>

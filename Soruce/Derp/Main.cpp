@@ -5,9 +5,6 @@
 #include <TinyXML/tinyxml.h>
 #include <TinyXML/tinystr.h>
 
-#include <typeinfo>
-#include <typeinfo.h>
-
 #include "Lander.hpp"
 #include "GameObject.h"
 
@@ -70,7 +67,7 @@ void read_gameobject_xml() {
 	for (TiXmlElement *xml_element = gameobject_element->FirstChildElement()->NextSiblingElement();
 					xml_element != nullptr; xml_element = xml_element->NextSiblingElement()) {
 
-		std::cout << xml_element->Value() << std::endl;
+		//std::cout << xml_element->Value() << std::endl;
 		//for some reason this acts like contains key and returns 0 or 1 so basically a bool
 		if (derp.count(xml_element->Value())) {
 			derp.find(xml_element->Value())->second(xml_element, gameobject);
@@ -85,7 +82,7 @@ void read_gameobject_xml() {
 
 int main(){
 
-	derp.insert(std::pair<std::string, set_component_from_xml*>("Rigidbody", Rigidbody::set_component_from_xml));
+	//derp.insert(std::pair<std::string, set_component_from_xml*>("Rigidbody", Rigidbody::set_component_from_xml));
 
 	//derp.find("Rigidbody")->second(new TiXmlElement("test"), new GameObject("some object", nullptr));
 
@@ -93,8 +90,8 @@ int main(){
 	//	Debug::print("it worked!");
 	//}
 
-	//DerpEngine application;
-	//application.main_loop();
+	DerpEngine application;
+	application.main_loop();
 	//application.
 
 	//build_simple_doc();
@@ -110,9 +107,9 @@ int main(){
 
 	//dump_to_stdout("test_gameobject.xml");
 
-	read_gameobject_xml();
+	//read_gameobject_xml();
 
-	system("pause");
+	//system("pause");
 
 	return 0;
 }

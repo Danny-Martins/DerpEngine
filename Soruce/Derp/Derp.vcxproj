@@ -132,7 +132,7 @@
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DerpEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameObjectManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="InputHandeler.cpp" />
     <ClCompile Include="Lander.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -155,7 +155,7 @@
     <ClInclude Include="Debug.hpp" />
     <ClInclude Include="DerpEngine.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameObjectManager.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="InputHandeler.hpp" />
     <ClInclude Include="Lander.hpp" />
     <ClInclude Include="MusicComponent.hpp" />

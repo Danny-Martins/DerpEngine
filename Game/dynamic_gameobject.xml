@@ -1,6 +1,0 @@
-<?xml version="1.0" ?>
-<Gameobject name="plz work">
-    <Transform>
-        <Position x="1337" y="69" />
-    </Transform>
-</Gameobject>

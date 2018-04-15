@@ -1,12 +1,15 @@
-<Gameobject name="lander">
+<Gameobject name="Player Lander">
     <Transform>
-        <Position x="5" y="69" />
+        <Vector2f name="Position" x="650" y="0" />
+        <float name="Rotation">0</float>
+        <Vector2f name="Scale" x="0.5" y="0.5" />
     </Transform>
     <Rigidbody>
-    	<float name="mass">69</float>
+    	<float name="mass">1</float>
+    	<float name="bouniness">0.5</float>
     </Rigidbody>
     <SpriteRenderer>
-    	<string name="path">windows/system32</string> 
+    	<string name="path">..\\Assets\\Sprites\\Ship.png</string> 
     </SpriteRenderer>
 </Gameobject>
 <?xml version="1.0" ?>

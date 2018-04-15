@@ -4,6 +4,7 @@
 #include "BoxCollider.hpp"
 #include <TinyXML/tinyxml.h>
 #include "Debug.hpp"
+#include "GameObject.h"
 
 class PhysicsEngine;
 
@@ -13,6 +14,7 @@ public:
 	static void set_component_from_xml(TiXmlElement* xml_element, GameObject* gameobject) {
 		Rigidbody *rigidbody = new Rigidbody();
 		rigidbody->mass = std::stof(xml_element->FirstChildElement()->GetText());
+		rigidbody->bounciness = std::stof(xml_element->FirstChildElement()->NextSiblingElement()->GetText());
 		gameobject->add_component(rigidbody);
 		//Debug::print(xml_element->FirstChildElement()->GetText());
 	}

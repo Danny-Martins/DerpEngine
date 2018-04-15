@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <thread>
 
-#include "GameObjectManager.h"
+#include "Scene.h"
 #include "PhyisicsEngine.h"
 
 //class PhysicsEngine;
@@ -27,7 +27,7 @@ public:
 private:
 	
 	PhysicsEngine physics_engine;
-	GameObjectManager scene_root;
+	Scene current_scene;
 	//sf::Music background_music;
 
 	enum ENGINE_STATE
