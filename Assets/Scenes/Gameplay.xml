@@ -1,13 +1,30 @@
-<Gameobject name="lander">
-    <Transform>
-        <Position x="650" y="0" />
-    </Transform>
-    <Rigidbody>
-    	<float name="mass">1</float>
-    	<float name="bounciness">0.5</float>
-    </Rigidbody>
-    <SpriteRenderer>
-    	<string name="path">..\\Assets\\Sprites\\Ship.png</string> 
-    </SpriteRenderer>
-</Gameobject>
 <?xml version="1.0" ?>
+<Scene>
+    <Gameobject name="lander">
+        <Transform>
+            <Vector2f x="640" y="360" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="1" y="1" />
+        </Transform>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Gameplay Background.png</string> 
+        </SpriteRenderer>
+    </Gameobject>
+    <Gameobject name="lander">
+        <Transform>
+            <Vector2f x="650" y="0" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="0.5" y="0.5" />
+        </Transform>
+        <Rigidbody>
+        	<float name="Mass">1</float>
+        	<float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+        	<string name="Asset Path">..\\Assets\\Sprites\\Ship.png</string> 
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+</Scene>

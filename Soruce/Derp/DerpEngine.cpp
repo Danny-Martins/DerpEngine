@@ -166,47 +166,6 @@ void DerpEngine::display_splash_screen(){
 	}
 }
 
-//game objects
-#include "Background.hpp"
-#include "Lander.hpp"
-#include "PlayerGUI.hpp"
-
-void DerpEngine::setup_scene() {
-
-	Debug::clear_log();
-	
-	//Background *background = new Background();
-	//PlayerGUI *player_gui = new PlayerGUI();
-	//Lander *player = new Lander();
-
-	/*
-	GameObject* floor = new GameObject("Floor", nullptr);
-	floor->add_component(new BoxCollider(1280 / 2, 40));
-	floor->transform->setPosition(1280 / 2, 750.0f);
-	Rigidbody* floor_rigidbody = new Rigidbody();
-	floor_rigidbody->mass = 0.0f;
-	floor_rigidbody->bounciness = 0.5f;
-	floor->add_component(floor_rigidbody);
-
-	GameObject* box = new GameObject("Ground", nullptr);
-	SpriteRenderer* box_sprite = new SpriteRenderer();
-	box_sprite->set_sprite("..\\Assets\\Sprites\\Box.png");
-	box->add_component(box_sprite);
-	box->transform->setScale(0.5f, 0.5f);
-
-	BoxCollider* box_collider = new BoxCollider(64.0f, 64.0f);
-	box->add_component(box_collider);
-	
-	Rigidbody* box_rigid = new Rigidbody();
-	box_rigid->mass = 0.5f;
-	box_rigid->bounciness = 0.5f;
-	box->add_component(box_rigid);
-
-	box->transform->setPosition(sf::Vector2f(250.0f, 570.0f));
-
-	*/
-}
-
 void DerpEngine::main_loop() {
 
 	this->current_scene.build_scene_from_xml();

@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Rigidbody.h"
 #include "SpriteRenderer.h"
+#include "BoxCollider.hpp"
 
 #include <string>
 #include <map>
@@ -24,6 +25,7 @@ Scene::~Scene() {
 void Scene::build_scene_from_xml() {
 	component_map.insert(std::pair<std::string, set_component_from_xml*>("Rigidbody", Rigidbody::set_component_from_xml));
 	component_map.insert(std::pair<std::string, set_component_from_xml*>("SpriteRenderer", SpriteRenderer::set_component_from_xml));
+	component_map.insert(std::pair<std::string, set_component_from_xml*>("BoxCollider", BoxCollider::set_component_from_xml));
 
 	TiXmlDocument document("..\\Assets\\Scenes\\Gameplay.xml");
 	bool did_load = document.LoadFile();
@@ -33,30 +35,32 @@ void Scene::build_scene_from_xml() {
 		return;
 	}
 
-	GameObject* gameobject = new GameObject("ERROR LOADING XML NAME", nullptr);
+	//loop thru all gameobjects in scene
+	for (TiXmlElement *gameobject_element = document.FirstChildElement()->FirstChildElement(); gameobject_element != nullptr;
+											gameobject_element = gameobject_element->NextSiblingElement()) {
 
-	TiXmlElement *gameobject_element = document.FirstChildElement();
-	//position is child of transform which is first child of gameobject
-	TiXmlElement *position = gameobject_element->FirstChildElement()->FirstChildElement();
+		GameObject* gameobject = new GameObject("ERROR LOADING XML NAME", nullptr);
 
-	gameobject->name = gameobject_element->Attribute("name");
-	gameobject->transform->setPosition(std::stof(position->Attribute("x")), std::stof(position->Attribute("y")));
+		//position is child of transform which is first child of gameobject
+		TiXmlElement *position = gameobject_element->FirstChildElement()->FirstChildElement();
+		TiXmlElement *scale = position->NextSiblingElement()->NextSiblingElement();
 
-	//loop thru rest of component elements
-	for (TiXmlElement *xml_element = gameobject_element->FirstChildElement()->NextSiblingElement();
-		xml_element != nullptr; xml_element = xml_element->NextSiblingElement()) {
+		gameobject->name = gameobject_element->Attribute("name");
+		gameobject->transform->setPosition(std::stof(position->Attribute("x")), std::stof(position->Attribute("y")));
+		gameobject->transform->setScale(std::stof(scale->Attribute("x")), std::stof(scale->Attribute("y")));
 
-		//for some reason this acts like contains key and returns 0 or 1 so basically a bool
-		if (component_map.count(xml_element->Value())) {
-			component_map.find(xml_element->Value())->second(xml_element, gameobject);
+		//loop thru rest of component elements
+		for (TiXmlElement *xml_element = gameobject_element->FirstChildElement()->NextSiblingElement();
+			xml_element != nullptr; xml_element = xml_element->NextSiblingElement()) {
+
+			//for some reason this acts like contains key and returns 0 or 1 so basically a bool
+			if (component_map.count(xml_element->Value())) {
+				component_map.find(xml_element->Value())->second(xml_element, gameobject);
+			}
 		}
+
 	}
-
-	//read all the data from the gameobject to make sure it worked
-	//std::cout << gameobject->name << "\n" << "X: " << gameobject->transform->getPosition().x << " Y: "
-		//<< gameobject->transform->getPosition().y << "\n" << std::endl;
-	//std::cout << "Mass: " << gameobject->get_component<Rigidbody>()->mass << std::endl;
-
+	
 }
 
 void Scene::shutdown() {

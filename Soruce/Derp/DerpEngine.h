@@ -1,5 +1,4 @@
 #pragma once
-// #ifndef
 
 #include <string>
 #include <SFML/Window.hpp>
@@ -8,8 +7,6 @@
 
 #include "Scene.h"
 #include "PhyisicsEngine.h"
-
-//class PhysicsEngine;
 
 class DerpEngine {
 
@@ -28,7 +25,6 @@ private:
 	
 	PhysicsEngine physics_engine;
 	Scene current_scene;
-	//sf::Music background_music;
 
 	enum ENGINE_STATE
 	{
@@ -56,5 +52,4 @@ private:
 
 	//init 
 	void init_graphics();
-	void setup_scene();
 };

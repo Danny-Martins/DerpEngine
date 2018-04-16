@@ -47,7 +47,7 @@ void GameObject::set_parent(GameObject* parent) {
 
 void GameObject::start() {
 
-	Debug::print("start");
+	//Debug::print("start");
 
 	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
 		(*itorator)->start();
