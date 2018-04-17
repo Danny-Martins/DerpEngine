@@ -3,10 +3,14 @@
 #include <iostream>
 #include <string>
 
-static class Debug {
+class Debug {
 
 	public:
-		static void print(std::string message);
-		static void log_error(std::string message, bool halt_engine);
-		static void clear_log();
+		void static print(std::string message);
+		void static log_error(std::string message, bool halt_engine);
+		void static clear_log();
+
+	//quick and dirty way to disallow instances of this class
+	private:
+		Debug();
 };

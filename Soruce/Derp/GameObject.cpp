@@ -75,4 +75,3 @@ sf::Transform GameObject::get_world_transform() {
 
 	return this->transform->getTransform() * this->parent->transform->getTransform();
 }
-

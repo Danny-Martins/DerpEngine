@@ -9,27 +9,17 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\Components">
       <UniqueIdentifier>{54a39921-6e72-42d1-966f-9dcf2785f9ba}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Components">
       <UniqueIdentifier>{57a5a71f-982c-4b8c-8bb4-3b8057db0d94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Wigi">
-      <UniqueIdentifier>{5475f8d1-6bb1-4bea-907f-6b2e90bb5877}</UniqueIdentifier>
+    <Filter Include="Source Files\Components\Custom Components">
+      <UniqueIdentifier>{a227fe10-9606-4943-b429-a4c922a89bf5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Lander">
-      <UniqueIdentifier>{4dfb34bd-6179-41c3-9a00-62c1bd8c98d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Background">
-      <UniqueIdentifier>{942c4815-72ff-46bd-9ea0-8e44d353f9a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Player GUI">
-      <UniqueIdentifier>{1522ce5e-b0e9-4dd8-a2da-228f1ddcba1e}</UniqueIdentifier>
+    <Filter Include="Source Files\Components\Custom Components\Player">
+      <UniqueIdentifier>{1b942492-6b48-495a-8b26-f890561fd465}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -47,9 +37,6 @@
     </ClCompile>
     <ClCompile Include="Vector.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Wigi.cpp">
-      <Filter>Resource Files\Wigi</Filter>
     </ClCompile>
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Source Files\Components</Filter>
@@ -81,17 +68,11 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Lander.cpp">
-      <Filter>Resource Files\Lander</Filter>
-    </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>Resource Files\Background</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerGUI.cpp">
-      <Filter>Resource Files\Player GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerComponent.cpp">
+      <Filter>Source Files\Components\Custom Components\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,9 +90,6 @@
     </ClInclude>
     <ClInclude Include="Vector.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Wigi.h">
-      <Filter>Resource Files\Wigi</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
       <Filter>Header Files\Components</Filter>
@@ -143,17 +121,11 @@
     <ClInclude Include="Button.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Lander.hpp">
-      <Filter>Resource Files\Lander</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.hpp">
-      <Filter>Resource Files\Background</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerGUI.hpp">
-      <Filter>Resource Files\Player GUI</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerComponent.hpp">
+      <Filter>Source Files\Components\Custom Components\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

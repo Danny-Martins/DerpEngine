@@ -183,6 +183,8 @@ void DerpEngine::main_loop() {
 
 		float delta_time = (float)delta_time_clock.restart().asMilliseconds();
 
+		//std::cout << delta_time << std::endl;
+
 		this->render_window->clear();
 		this->physics_engine.update_phyisics(delta_time);
 		Scene::scene_root->update(delta_time);

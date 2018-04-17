@@ -15,6 +15,11 @@ class GameObject {
 
 		void add_component(Component* component);
 
+		virtual void start();
+		virtual void update(const float deleta_time);
+
+		sf::Transform get_world_transform();
+
 		template <typename component>
 		inline component* get_component() {
 			for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
@@ -23,13 +28,6 @@ class GameObject {
 			}
 			return nullptr;
 		}
-
-		virtual void start();
-		virtual void update(const float deleta_time);
-		void render();
-
-		sf::Transform get_world_transform();
-
 
 	public:
 		std::string name;

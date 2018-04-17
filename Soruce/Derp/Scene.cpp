@@ -1,7 +1,12 @@
 #include "Scene.h"
+
+//components for adding to xml component map
 #include "Rigidbody.h"
 #include "SpriteRenderer.h"
 #include "BoxCollider.hpp"
+#include "MusicComponent.hpp"
+#include "TextRenderer.h"
+#include "PlayerComponent.hpp"
 
 #include <string>
 #include <map>
@@ -23,15 +28,21 @@ Scene::~Scene() {
 }
 
 void Scene::build_scene_from_xml() {
+	const std::string default_scene_asset_path = "..\\Assets\\Scenes\\Gameplay.xml";
+
 	component_map.insert(std::pair<std::string, set_component_from_xml*>("Rigidbody", Rigidbody::set_component_from_xml));
 	component_map.insert(std::pair<std::string, set_component_from_xml*>("SpriteRenderer", SpriteRenderer::set_component_from_xml));
 	component_map.insert(std::pair<std::string, set_component_from_xml*>("BoxCollider", BoxCollider::set_component_from_xml));
+	component_map.insert(std::pair<std::string, set_component_from_xml*>("MusicComponent", MusicComponent::set_component_from_xml));
+	component_map.insert(std::pair<std::string, set_component_from_xml*>("TextRenderer", TextRenderer::create_component_from_xml));
+	component_map.insert(std::pair<std::string, set_component_from_xml*>("PlayerComponent", PlayerComponent::create_component_from_xml));
 
-	TiXmlDocument document("..\\Assets\\Scenes\\Gameplay.xml");
+	TiXmlDocument document(default_scene_asset_path.c_str());
+
 	bool did_load = document.LoadFile();
 
 	if (!did_load) {
-		Debug::print("didnt load shit");
+		Debug::log_error("ERROR LOADING XML SCENE FILE : EVALUATED PATH=" + default_scene_asset_path, false);
 		return;
 	}
 
@@ -68,6 +79,17 @@ void Scene::shutdown() {
 		//delete (*itorator);
 	//}
 }
+
+GameObject* Scene::find(std::string name) {
+
+	for each (GameObject *gameobject in Scene::scene_root->children){
+		if (gameobject->name == name)
+			return gameobject;
+	}
+
+	return nullptr;
+}
+
 /*
 void Scene::add_to_graph(GameObject* gameobject) {
 	this->scene_graph.push_back(gameobject);

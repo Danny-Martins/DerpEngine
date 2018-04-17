@@ -33,7 +33,6 @@ private:
 		InitializedFailed,
 		Playing,
 		Paused,
-
 	};
 
 	ENGINE_STATE engine_current_state;

@@ -1,30 +1,53 @@
 <?xml version="1.0" ?>
 <Scene>
-    <Gameobject name="lander">
+    <Gameobject name="Background">
         <Transform>
-            <Vector2f x="640" y="360" />
+            <Vector2f name="Position" x="640" y="360" />
             <float name="Rotation">0</float>
             <Vector2f name="Scale" x="1" y="1" />
         </Transform>
         <SpriteRenderer>
-            <string name="Asset Path">..\\Assets\\Sprites\\Gameplay Background.png</string> 
+            <string name="Asset Path">..\\Assets\\Sprites\\Gameplay Background.png</string>
         </SpriteRenderer>
+        <MusicComponent>
+            <string name="Asset Path">..\\Assets\\Audio\\BGM\\Astrolander.wav</string>
+            <bool name="Play On Start?">true</bool>
+        </MusicComponent>
+    </Gameobject>
+    <Gameobject name="Player GUI">
+        <Transform>
+            <Vector2f name="Position" x="135" y="0" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="1" y="1" />
+        </Transform>
+        <TextRenderer>
+            <string name="Default Text">PLAYER FUEL ERROR</string>
+            <byte name="Font Size">20</byte>
+            <vector2f name="Position Offset" x="-5" y="20" />
+            <string name="Asset Path" Description="Default Font Override"></string>
+        </TextRenderer>
     </Gameobject>
     <Gameobject name="lander">
         <Transform>
-            <Vector2f x="650" y="0" />
+            <Vector2f name="Position" x="650" y="0" />
             <float name="Rotation">0</float>
-            <Vector2f name="Scale" x="0.5" y="0.5" />
+            <Vector2f name="Scale" x="0.35" y="0.35" />
         </Transform>
         <Rigidbody>
         	<float name="Mass">1</float>
         	<float name="Bounciness">0.5</float>
         </Rigidbody>
         <SpriteRenderer>
-        	<string name="Asset Path">..\\Assets\\Sprites\\Ship.png</string> 
+        	<string name="Asset Path">..\\Assets\\Sprites\\Ship.png</string>
         </SpriteRenderer>
         <BoxCollider>
             <bool name="Uses Sprite?">true</bool>
         </BoxCollider>
+        <PlayerComponent>
+            <float name="Thrust Power">1</float>
+            <float name="Fuel Spend Amount">1</float>
+            <float name="Fuel Amount">100</float>
+            <float name="Rotation Speed">0.15</float>
+        </PlayerComponent>
     </Gameobject>
 </Scene>

@@ -10,6 +10,7 @@ class Scene {
 		void build_scene_from_xml();
 
 		static GameObject* scene_root;
+		static GameObject* find(std::string name);
 
 	private:
 		void shutdown();

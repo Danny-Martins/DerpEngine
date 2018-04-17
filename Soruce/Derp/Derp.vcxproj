@@ -126,48 +126,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Background.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DerpEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="InputHandeler.cpp" />
-    <ClCompile Include="Lander.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MusicComponent.cpp" />
     <ClCompile Include="PhyisicsEngine.cpp" />
-    <ClCompile Include="PlayerGUI.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="SoundComponent.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector.cpp" />
-    <ClCompile Include="Wigi.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Background.hpp" />
     <ClInclude Include="BoxCollider.hpp" />
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Debug.hpp" />
     <ClInclude Include="DerpEngine.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="PlayerComponent.hpp" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="InputHandeler.hpp" />
-    <ClInclude Include="Lander.hpp" />
     <ClInclude Include="MusicComponent.hpp" />
     <ClInclude Include="PhyisicsEngine.h" />
-    <ClInclude Include="PlayerGUI.hpp" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="SoundComponent.hpp" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="TextRenderer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector.h" />
-    <ClInclude Include="Wigi.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
