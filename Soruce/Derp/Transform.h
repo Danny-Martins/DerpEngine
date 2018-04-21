@@ -8,4 +8,5 @@ public:
 	Transform();
 	void start() override;
 	void update(float delta_time) override;
+	sf::Vector2f get_up_vector();
 };

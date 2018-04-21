@@ -41,9 +41,6 @@
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandeler.cpp">
-      <Filter>Source Files\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Rigidbody.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
@@ -92,9 +89,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
-      <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHandeler.hpp">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="Rigidbody.h">

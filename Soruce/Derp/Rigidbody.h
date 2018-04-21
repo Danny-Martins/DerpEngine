@@ -19,14 +19,14 @@ public:
 		//Debug::print(xml_element->FirstChildElement()->GetText());
 	}
 
-	float mass = 1.0f;
+	float mass;
 	float bounciness;
 
 	//The force that will slow down objects velocity (1.0f is no force)
-	float linear_dampaning = 0.005f;
+	const float linear_dampaning;
 	//The threshold that will force the player to stop
 	//moving if they pass this value
-	float stopping_speed = 0.00004f;
+	const float stopping_speed;
 
 	bool obeys_gravity = true;
 	bool grounded;
@@ -49,15 +49,14 @@ public:
 	void add_force(sf::Vector2f force);
 	void stop(bool stop_x_axis, bool stop_y_axis);
 	bool is_grounded();
-	void update(float delta_time) override;
+	//void update(float delta_time) override;
 	void start() override;
 	void update_phyisics(float delta_time);
 	void set_aabb();
+	void on_collision_enter(GameObject *colliding_gameobject);
 
 private:
 	sf::Vector2f total_forces;
 	PhysicsEngine *engine;
 	BoxCollider *box_collider;
-
-private:
 };

@@ -7,6 +7,7 @@
 #include "MusicComponent.hpp"
 #include "TextRenderer.h"
 #include "PlayerComponent.hpp"
+#include "Button.hpp"
 
 #include <string>
 #include <map>
@@ -36,6 +37,7 @@ void Scene::build_scene_from_xml() {
 	component_map.insert(std::pair<std::string, set_component_from_xml*>("MusicComponent", MusicComponent::set_component_from_xml));
 	component_map.insert(std::pair<std::string, set_component_from_xml*>("TextRenderer", TextRenderer::create_component_from_xml));
 	component_map.insert(std::pair<std::string, set_component_from_xml*>("PlayerComponent", PlayerComponent::create_component_from_xml));
+	component_map.insert(std::pair<std::string, set_component_from_xml*>("Button", Button::create_component_from_xml));
 
 	TiXmlDocument document(default_scene_asset_path.c_str());
 
@@ -53,6 +55,12 @@ void Scene::build_scene_from_xml() {
 		GameObject* gameobject = new GameObject("ERROR LOADING XML NAME", nullptr);
 
 		//position is child of transform which is first child of gameobject
+		std::string enabled_string = gameobject_element->Attribute("Enabled");
+		if (enabled_string == "true")
+			gameobject->enabled = true;
+		else
+			gameobject->enabled = false;
+		
 		TiXmlElement *position = gameobject_element->FirstChildElement()->FirstChildElement();
 		TiXmlElement *scale = position->NextSiblingElement()->NextSiblingElement();
 

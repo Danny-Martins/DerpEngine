@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <Scene>
-    <Gameobject name="Background">
+    <Gameobject name="Background" Enabled="true">
         <Transform>
             <Vector2f name="Position" x="640" y="360" />
             <float name="Rotation">0</float>
@@ -14,7 +14,7 @@
             <bool name="Play On Start?">true</bool>
         </MusicComponent>
     </Gameobject>
-    <Gameobject name="Player GUI">
+    <Gameobject name="Player GUI" Enabled="true">
         <Transform>
             <Vector2f name="Position" x="135" y="0" />
             <float name="Rotation">0</float>
@@ -27,26 +27,252 @@
             <string name="Asset Path" Description="Default Font Override"></string>
         </TextRenderer>
     </Gameobject>
-    <Gameobject name="lander">
+    <Gameobject name="Landing Zone"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="50" y="385" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="0.15" y="0.15" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Landing Zone.jpg</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Landing Zone"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="250" y="650" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="0.15" y="0.15" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Landing Zone.jpg</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Landing Zone"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="1150" y="700" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="0.1" y="0.1" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Landing Zone.jpg</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Wall"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="100" y="550" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="0.85" y="1.25" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Test Sprites\\Box.png</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Wall"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="401" y="425" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="1.5" y="0.25" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Test Sprites\\Box.png</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Wall"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="1005" y="620" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="0.25" y="0.65" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Test Sprites\\Box.png</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Wall"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="1250" y="590" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="0.25" y="0.875" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Test Sprites\\Box.png</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Wall"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="875" y="500" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="0.25" y="0.85" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Test Sprites\\Box.png</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Wall"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="1100" y="425" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="1.5" y="0.2" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Test Sprites\\Box.png</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Wall"  Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="640" y="745" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="5" y="0.25" />
+        </Transform>
+        <Rigidbody>
+            <float name="Mass">0</float>
+            <float name="Bounciness">0.5</float>
+        </Rigidbody>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Test Sprites\\Box.png</string>
+        </SpriteRenderer>
+        <BoxCollider>
+            <bool name="Uses Sprite?">true</bool>
+        </BoxCollider>
+    </Gameobject>
+    <Gameobject name="Game Over Menu" Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="640" y="300" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="1" y="0.75" />
+        </Transform>
+        <SpriteRenderer>
+            <string name="Asset Path">..\\Assets\\Sprites\\Menu Background.png</string>
+        </SpriteRenderer>
+        <TextRenderer>
+            <string name="Default Text">ERROR</string>
+            <byte name="Font Size">30</byte>
+            <vector2f name="Position Offset" x="0" y="-125" />
+            <string name="Asset Path" Description="Default Font Override"></string>
+        </TextRenderer>
+    </Gameobject>
+    <Gameobject name="Restart Button" Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="565" y="275" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="1" y="1" />
+        </Transform>
+        <Button>
+            <vector2f name="Size" x="150" y="60" />
+            <float name="Outline Thickness">5</float>
+            <vector4i name="Normal Color" x="175" y="175" z="175" w="255" />
+            <vector4i name="Highlighted Color" x="255" y="50" z="50" w="255" />
+            <string name="Broadcasted Message">Restart</string>
+        </Button>
+        <TextRenderer>
+            <string name="Default Text">Restart Game</string>
+            <byte name="Font Size">20</byte>
+            <vector2f name="Position Offset" x="75" y="30" />
+            <string name="Asset Path" Description="Default Font Override"></string>
+        </TextRenderer>
+    </Gameobject>
+    <Gameobject name="Quit Button" Enabled="true">
+        <Transform>
+            <Vector2f name="Position" x="565" y="335" />
+            <float name="Rotation">0</float>
+            <Vector2f name="Scale" x="1" y="1" />
+        </Transform>
+        <Button>
+            <vector2f name="Size" x="150" y="60" />
+            <float name="Outline Thickness">5</float>
+            <vector4i name="Normal Color" x="175" y="175" z="175" w="255" />
+            <vector4i name="Highlighted Color" x="255" y="50" z="50" w="255" />
+            <string name="Broadcasted Message">Quit</string>
+        </Button>
+        <TextRenderer>
+            <string name="Default Text">Quit Game</string>
+            <byte name="Font Size">20</byte>
+            <vector2f name="Position Offset" x="75" y="30" />
+            <string name="Asset Path" Description="Default Font Override"></string>
+        </TextRenderer>
+    </Gameobject>
+    <Gameobject name="lander"  Enabled="true">
         <Transform>
             <Vector2f name="Position" x="650" y="0" />
             <float name="Rotation">0</float>
             <Vector2f name="Scale" x="0.35" y="0.35" />
         </Transform>
         <Rigidbody>
-        	<float name="Mass">1</float>
-        	<float name="Bounciness">0.5</float>
+            <float name="Mass">1</float>
+            <float name="Bounciness">0.5</float>
         </Rigidbody>
         <SpriteRenderer>
-        	<string name="Asset Path">..\\Assets\\Sprites\\Ship.png</string>
+            <string name="Asset Path">..\\Assets\\Sprites\\Ship.png</string>
         </SpriteRenderer>
         <BoxCollider>
             <bool name="Uses Sprite?">true</bool>
         </BoxCollider>
         <PlayerComponent>
-            <float name="Thrust Power">1</float>
+            <float name="Thrust Power">0.0005</float>
             <float name="Fuel Spend Amount">1</float>
-            <float name="Fuel Amount">100</float>
+            <float name="Fuel Amount">10000</float>
             <float name="Rotation Speed">0.15</float>
         </PlayerComponent>
     </Gameobject>

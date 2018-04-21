@@ -3,7 +3,7 @@
 #include "Debug.hpp"
 #include "SpriteRenderer.h"
 
-Rigidbody::Rigidbody() {}
+Rigidbody::Rigidbody() : linear_dampaning(0.004f), stopping_speed(0.00004f), mass(1.0f) {}
 
 void Rigidbody::start() {
 	engine = PhysicsEngine::phyisics_engine_instance;
@@ -42,9 +42,6 @@ void Rigidbody::stop(bool stop_x_axis, bool stop_y_axis) {
 
 void Rigidbody::add_force(sf::Vector2f force) {
 	total_forces += force;
-}
-
-void Rigidbody::update(float delta_time) {
 }
 
 void Rigidbody::update_phyisics(float delta_time) {
@@ -87,24 +84,16 @@ void Rigidbody::update_phyisics(float delta_time) {
 		else if (current_velocity.y < 0)
 			current_velocity.y = std::max(current_velocity.y, -max_velocity.y);
 
-		//std::cout << "X: " << current_velocity.x << "Y: " << current_velocity.y << std::endl;
-
 		sf::Vector2f temp = this->game_object->transform->getPosition();
 		temp += current_velocity * delta_time;
 
 		this->game_object->transform->setPosition(temp);
 	}
-	//std::cout << this->game_object->transform->getPosition().x << std::endl;
 	set_aabb();
 
-	//Handle Linear Dampening
-	/*sf::Vector2f drag = this->current_velocity * this->linear_dampaning;
-	this->current_velocity -= drag;
-
-	if (abs(current_velocity.x) < this->stopping_speed)
-	current_velocity.x = 0;
-	if (abs(current_velocity.y) < this->stopping_speed)
-	current_velocity.y = 0;*/
-
 	this->total_forces = sf::Vector2f(0.0f, 0.0f);
+}
+
+void Rigidbody::on_collision_enter(GameObject *colliding_gameobject) {
+	this->game_object->boradcast_message(colliding_gameobject->name);
 }

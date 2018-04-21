@@ -86,6 +86,8 @@ void PhysicsEngine::check_collisions()
 						info->penatration = gap.y;
 					}
 					collision_list.insert(std::pair<CollisionPair*, CollisionInfo*>(pair, info));
+					pair->object_rigidbody_a->on_collision_enter(pair->object_rigidbody_b->game_object);
+					pair->object_rigidbody_b->on_collision_enter(pair->object_rigidbody_a->game_object);
 				}
 			}
 		}

@@ -133,7 +133,6 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="InputHandeler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MusicComponent.cpp" />
     <ClCompile Include="PhyisicsEngine.cpp" />
@@ -153,7 +152,6 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="PlayerComponent.hpp" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="InputHandeler.hpp" />
     <ClInclude Include="MusicComponent.hpp" />
     <ClInclude Include="PhyisicsEngine.h" />
     <ClInclude Include="Rigidbody.h" />

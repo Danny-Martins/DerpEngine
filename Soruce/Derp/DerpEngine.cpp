@@ -19,11 +19,6 @@
 
 #include "GameObject.h"
 
-//game play gameobjects
-#include "Wigi.h"
-#include "Rigidbody.h"
-#include "MusicComponent.hpp"
-#include "SpriteRenderer.h"
 #include "Debug.hpp"
 
 sf::RenderWindow* DerpEngine::render_window;

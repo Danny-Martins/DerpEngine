@@ -2,7 +2,7 @@
 #include "Scene.h"
 #include "Debug.hpp"
 
-GameObject::GameObject(std::string name, GameObject* parent){
+GameObject::GameObject(std::string name, GameObject* parent) : enabled(true){
 	this->name = name;
 	this->transform = new Transform();
 	this->add_component(this->transform);
@@ -19,7 +19,6 @@ GameObject::GameObject(std::string name, GameObject* parent){
 }
 
 GameObject::~GameObject() {
-	/*
 	if (this->children.size() != 0) {
 		for (std::vector<GameObject*>::iterator itorator = this->children.begin(); itorator != this->children.end(); itorator++) {
 			delete (*itorator);
@@ -28,7 +27,6 @@ GameObject::~GameObject() {
 	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
 		delete (*itorator);
 	}
-	*/
 }
 
 void GameObject::add_component(Component* component) {
@@ -48,9 +46,12 @@ void GameObject::set_parent(GameObject* parent) {
 void GameObject::start() {
 
 	//Debug::print("start");
+	if (!this->enabled)
+		return;
 
 	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
-		(*itorator)->start();
+		if((*itorator)->enabled)
+			(*itorator)->start();
 	}
 
 	for (std::vector<GameObject*>::iterator itorator = this->children.begin(); itorator != this->children.end(); itorator++) {
@@ -60,12 +61,24 @@ void GameObject::start() {
 
 void GameObject::update(const float delta_time) {
 
+	if (!this->enabled)
+		return;
+
 	for (std::vector<Component*>::iterator itorator = this->components.begin(); itorator != this->components.end(); itorator++) {
-		(*itorator)->update(delta_time);
+		if ((*itorator)->enabled)
+			(*itorator)->update(delta_time);
 	}
 	
 	for (std::vector<GameObject*>::iterator itorator = this->children.begin(); itorator != this->children.end(); itorator++) {
 		(*itorator)->update(delta_time);
+	}
+}
+
+void GameObject::boradcast_message(std::string message) {
+	for (std::vector<GameObject*>::iterator gameobject_itorator = Scene::scene_root->children.begin(); gameobject_itorator != Scene::scene_root->children.end(); gameobject_itorator++) {
+		for (std::vector<Component*>::iterator itorator = (*gameobject_itorator)->components.begin(); itorator != (*gameobject_itorator)->components.end(); itorator++) {
+			(*itorator)->recive_message(message);
+		}
 	}
 }
 

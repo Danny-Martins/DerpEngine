@@ -3,6 +3,8 @@
 #include "Component.h"
 #include "Transform.h"
 
+#include <string>
+
 class GameObject {
 	public:
 		//static GameObject& find(std::string object_name);
@@ -15,8 +17,10 @@ class GameObject {
 
 		void add_component(Component* component);
 
-		virtual void start();
-		virtual void update(const float deleta_time);
+		void start();
+		void update(const float deleta_time);
+
+		void boradcast_message(std::string message);
 
 		sf::Transform get_world_transform();
 
@@ -37,4 +41,6 @@ class GameObject {
 		std::vector<Component*> components;
 
 		Transform* transform;
+
+		bool enabled;
 };
