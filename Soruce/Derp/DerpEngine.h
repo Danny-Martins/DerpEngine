@@ -26,8 +26,7 @@ private:
 	PhysicsEngine physics_engine;
 	Scene current_scene;
 
-	enum ENGINE_STATE
-	{
+	enum ENGINE_STATE{
 		Uninitialized,
 		Initialized,
 		InitializedFailed,
@@ -35,13 +34,13 @@ private:
 		Paused,
 	};
 
-	ENGINE_STATE engine_current_state;
+	ENGINE_STATE current_engine_state;
 
 private:
 
 	//bool init_python();
 	//check hardware
-	void check_hardware();
+	void check_minimum_hardware();
 	unsigned int check_enough_disk_space();
 	unsigned int get_cpu_speed();
 	std::string get_cpu_architecture();

@@ -1,4 +1,4 @@
-#pragma once
+#pragma
 
 #include "Component.h"
 #include "GameObject.h"
@@ -35,6 +35,8 @@ class PlayerComponent : public Component {
 		void show_end_screen(const bool died);
 
 	private:
+
+		std::string player_name;
 
 		sf::Vector2f start_position;
 

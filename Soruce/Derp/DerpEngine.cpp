@@ -21,24 +21,25 @@
 
 #include "Debug.hpp"
 
+//static declare
 sf::RenderWindow* DerpEngine::render_window;
 
 DerpEngine::DerpEngine() : is_debug_mode(true), current_scene(), physics_engine(){
 
 	std::cout << "starting app \n";
 
-	engine_current_state = Uninitialized;
+	current_engine_state = Uninitialized;
 
-	std::thread hardware_check_thread(&DerpEngine::check_hardware, this);
+	std::thread hardware_check_thread(&DerpEngine::check_minimum_hardware, this);
 
 	this->render_window = new sf::RenderWindow();
 	this->init_graphics();
 	this->display_splash_screen();
-
+	
 	hardware_check_thread.join();
 }
 
-void DerpEngine::check_hardware() {
+void DerpEngine::check_minimum_hardware() {
 	std::cout << "Starting init" << std::endl;
 
 	this->check_enough_disk_space();
@@ -47,7 +48,7 @@ void DerpEngine::check_hardware() {
 	this->check_memory();
 	this->check_joypads();
 
-	engine_current_state = Initialized;
+	current_engine_state = Initialized;
 
 	std::cout << "hardware cheked son \n" << std::endl;
 
@@ -153,7 +154,7 @@ void DerpEngine::display_splash_screen(){
 
 	sf::Sprite sprite(image);
 
-	while (engine_current_state != Initialized)
+	while (current_engine_state != Initialized)
 	{
 		render_window->clear();
 		render_window->draw(sprite);

@@ -3,8 +3,14 @@
 #include <SFML/Window/Keyboard.hpp>
 #include "Scene.h"
 #include "DerpEngine.h"
+#include <cstdlib>
 
-PlayerComponent::PlayerComponent() : player_gui_fuel(nullptr), crash_velocity_threshold(0.1f){}
+PlayerComponent::PlayerComponent() : player_gui_fuel(nullptr), crash_velocity_threshold(0.1f){
+
+	this->player_name = std::getenv("USERNAME");
+	Debug::print(this->player_name);
+
+}
 
 void PlayerComponent::start() {
 	this->game_object->enabled = true;
@@ -19,6 +25,8 @@ void PlayerComponent::start() {
 	this->player_gui_fuel->set_string("Remaining Fuel: " + std::to_string((int)this->remaining_fuel));
 	this->rigid_body = this->game_object->get_component<Rigidbody>();
 
+	Scene::find("Player Name")->get_component<TextRenderer>()->set_string("Name: " + this->player_name);
+
 	Scene::find("Game Over Menu")->enabled = false;
 	Scene::find("Quit Button")->enabled = false;
 	Scene::find("Restart Button")->enabled = false;
@@ -26,7 +34,7 @@ void PlayerComponent::start() {
 
 void PlayerComponent::update(const float delta_time) {
 
-	std::cout << this->game_object->transform->getRotation() << std::endl;
+	//std::cout << this->game_object->transform->getRotation() << std::endl;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		this->rotate(-this->rotation_speed);
@@ -37,8 +45,6 @@ void PlayerComponent::update(const float delta_time) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		this->thrust();
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-		this->game_object->enabled = false;
 }
 
 void PlayerComponent::rotate(const float rotation_angle){
@@ -59,7 +65,6 @@ void PlayerComponent::recive_message(const std::string message){
 	if (message == "Wall") {
 		this->game_object->enabled = false;
 		this->show_end_screen(true);
-		//find and enable the game over menu
 	}
 	else if (message == "Landing Zone") {
 		if (this->rigid_body->current_velocity.x >= this->crash_velocity_threshold ||

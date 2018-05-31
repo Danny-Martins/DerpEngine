@@ -77,9 +77,7 @@ void Scene::build_scene_from_xml() {
 				component_map.find(xml_element->Value())->second(xml_element, gameobject);
 			}
 		}
-
 	}
-	
 }
 
 void Scene::shutdown() {
@@ -97,25 +95,3 @@ GameObject* Scene::find(std::string name) {
 
 	return nullptr;
 }
-
-/*
-void Scene::add_to_graph(GameObject* gameobject) {
-	this->scene_graph.push_back(gameobject);
-	std::cout << "Added " << gameobject->name << " to scene root" << std::endl;
-	std::cout << scene_graph.size() << std::endl;
-}
-*/
-/*
-void Scene::start() {
-	for (std::vector<GameObject*>::iterator itorator = this->scene_graph.begin(); itorator != this->scene_graph.end(); itorator++) {
-		(*itorator)->start();
-	}
-}
-*/
-/*
-void Scene::update(float delta_time) {
-	for (std::vector<GameObject*>::iterator itorator = this->scene_graph.begin(); itorator != this->scene_graph.end(); itorator++) {
-		(*itorator)->update(delta_time);
-	}
-}
-*/

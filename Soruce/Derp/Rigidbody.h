@@ -16,7 +16,6 @@ public:
 		rigidbody->mass = std::stof(xml_element->FirstChildElement()->GetText());
 		rigidbody->bounciness = std::stof(xml_element->FirstChildElement()->NextSiblingElement()->GetText());
 		gameobject->add_component(rigidbody);
-		//Debug::print(xml_element->FirstChildElement()->GetText());
 	}
 
 	float mass;

@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "DerpEngine.h"
 
-BoxCollider::BoxCollider(float half_width, float half_height) : draw_bounding_box(true){
+BoxCollider::BoxCollider(float half_width, float half_height) : draw_bounding_box(false){
 	this->half_width = half_width;
 	this->half_height = half_height;
 }
